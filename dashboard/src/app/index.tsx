@@ -1,7 +1,9 @@
-import styles from "./styles.module.scss";
+import Routing from "pages";
 import { withHocs } from "./hocs";
+import "./index.scss";
+
 const App = () => {
-    return <div className={styles.root}>Hello, Projentry!</div>;
+    return <Routing />;
 };
 
 export default withHocs(App);

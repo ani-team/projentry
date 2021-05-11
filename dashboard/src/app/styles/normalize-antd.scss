@@ -1,0 +1,68 @@
+// TODO: перенести и разложить позднее все инициализирующие стили приложения по папкам в `app/styles`
+// TODO: расположить позднее здесь стили
+
+// Лоадер на весь контейнер
+.ant-spin.overlay {
+    position: absolute;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.ant-badge {
+    color: unset !important;
+}
+
+.ant-layout {
+    background: #ffffff;
+
+    &-content {
+        // display: inline-flex;
+        // flex-direction: column;
+        // flex-grow: 1;
+        // height: 100%;
+        // FIXME: resolve later
+        // 100vh - Header - Alert - Footer
+        // min-height: calc(100vh - 64px - 70px - 40px);
+        min-height: calc(100vh - 64px - 70px);
+        // min-height: 86vh;
+        padding: 40px 10%;
+    }
+}
+
+.ant-steps-horizontal:not(.ant-steps-label-vertical) .ant-steps-item-description {
+    max-width: 250px;
+}
+
+.ant-card-cover {
+    background-color: var(--color-accent);
+}
+
+.ant-card-meta-title {
+    white-space: unset;
+}
+
+// .ant-select-selector,
+// .ant-btn {
+//     border-radius: 5px !important;
+// }
+
+.rc-virtual-list-scrollbar-thumb {
+    background-color: #acb6c4 !important;
+}
+
+.ant-input-clear-icon {
+    font-size: 20px;
+}
+
+.ant-layout-sider {
+    background: transparent;
+}
+
+// .ant-typography + .ant-typography {
+//     margin: 0;
+// }

@@ -1,11 +1,5 @@
 import { Layout } from "antd";
-// import {
-//     HeartOutlined,
-//     ShoppingCartOutlined,
-//     UserOutlined,
-//     // FolderOpenOutlined,
-//     MenuOutlined,
-// } from "@ant-design/icons";
+import { QqOutlined } from "@ant-design/icons";
 import cn from "classnames";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
@@ -22,8 +16,8 @@ const Header = (props: Props) => {
     return (
         <Layout.Header className={cn(styles.root, className)}>
             <Link className={styles.logo} to="/">
-                {/* <Logo width={24} /> */}
-                <h1 className={styles.logoTitle}>sharead</h1>
+                <QqOutlined style={{ fontSize: 24 }} />
+                <h1 className={styles.logoTitle}>projentry</h1>
             </Link>
             <div className={styles.search}>SEARCH</div>
             <div className={styles.toolbar}>TOOLBAR</div>

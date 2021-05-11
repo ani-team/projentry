@@ -20,13 +20,16 @@
     display: flex;
     flex-grow: 1;
     align-items: center;
+    color: var(--color-dark);
     transition: 0.25s;
 
     &:hover {
+        color: var(--color-dark);
         opacity: 0.7;
     }
 
     &:active {
+        color: var(--color-dark);
         opacity: 0.5;
     }
 

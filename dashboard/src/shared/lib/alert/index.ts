@@ -5,12 +5,10 @@ import { notification } from "antd";
  * - упрощения API (более нормализированное и привычное)
  * - для стандартизации единого placement для всех алертов
  */
-const generateOpener = (type: import("antd/lib/notification").IconType) => (
-    message: any,
-    description?: any,
-) => {
-    notification.open({ type, message, description, placement: "bottomRight" });
-};
+const generateOpener =
+    (type: import("antd/lib/notification").IconType) => (message: any, description?: any) => {
+        notification.open({ type, message, description, placement: "bottomRight" });
+    };
 
 const error = generateOpener("error");
 const success = generateOpener("success");

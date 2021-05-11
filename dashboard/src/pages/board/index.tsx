@@ -1,6 +1,6 @@
 import { Typography, Layout } from "antd";
 
-// import { Header, Footer } from "features";
+import { Header, Footer } from "features";
 import { dom } from "shared/lib";
 import styles from "./styles.module.scss";
 
@@ -15,14 +15,14 @@ const BoardPage = () => {
 
     return (
         <Layout>
-            {/* <Header /> */}
+            <Header />
             <Layout.Content className={styles.root}>
                 <Typography.Title className={styles.title} level={2}>
                     MyProj
                 </Typography.Title>
                 <Layout className={styles.catalog}>...</Layout>
             </Layout.Content>
-            {/* <Footer /> */}
+            <Footer />
         </Layout>
     );
 };
