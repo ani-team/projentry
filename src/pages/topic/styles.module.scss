@@ -1,0 +1,22 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &Content {
+        flex-grow: 1;
+        height: 100%;
+    }
+}
+
+.main {
+    padding: 40px;
+}
+
+.sider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    background-color: var(--color-accent);
+}

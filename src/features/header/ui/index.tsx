@@ -32,11 +32,10 @@ const Header = (props: Props) => {
                     className={styles.switch}
                     checkedChildren={<Icon component={IconMoon} className={styles.switchIcon} />}
                     unCheckedChildren={<Icon component={IconSun} className={styles.switchIcon} />}
-                    disabled
                 />
                 <a
                     className={styles.github}
-                    href="https://github.com/ani-team"
+                    href="https://github.com/ani-team/projentry"
                     target="_blank"
                     rel="noreferrer"
                 >

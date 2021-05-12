@@ -2,6 +2,7 @@
 
 .root {
     position: relative;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     width: 100%;
