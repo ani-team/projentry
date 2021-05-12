@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import type { ReactNode } from "react";
 
-import { Header, Footer } from "features";
+import { Header } from "features";
 import { dom } from "shared/lib";
 import styles from "./styles.module.scss";
 
@@ -81,7 +81,6 @@ const BoardPage = () => {
                     </Row>
                 </Layout>
             </Layout.Content>
-            <Footer />
         </Layout>
     );
 };
