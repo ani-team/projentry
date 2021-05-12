@@ -1,8 +1,9 @@
 import { Typography, Layout, Card, Row, Col } from "antd";
+import { Link } from "react-router-dom";
 
 import { Header } from "features";
 import { topics } from "entities/topic";
-import { dom } from "shared/lib";
+import { string, dom } from "shared/lib";
 import styles from "./styles.module.scss";
 
 /**
@@ -25,9 +26,11 @@ const BoardPage = () => {
                     <Row className={styles.topics} gutter={[20, 20]}>
                         {topics.map((t) => (
                             <Col key={t.title} span={8}>
-                                <Card title={t.title} extra={t.icon} hoverable>
-                                    <p>{t.description}</p>
-                                </Card>
+                                <Link to={`/${string.slugize(t.title)}`} style={{ width: "100%" }}>
+                                    <Card title={t.title} extra={t.icon} hoverable>
+                                        <p>{t.description}</p>
+                                    </Card>
+                                </Link>
                             </Col>
                         ))}
                     </Row>

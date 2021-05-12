@@ -12,6 +12,7 @@ const Routing = () => {
     return (
         <Switch>
             <Route exact path="/" component={BoardPage} />
+            {/* FIXME: temp solution! */}
             <Route exact path="/get-started" component={TopicPage} />
             <Route exact path="/health" component={TopicPage} />
             <Route exact path="/faq" component={TopicPage} />
