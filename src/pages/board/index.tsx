@@ -4,6 +4,8 @@ import {
     BugOutlined,
     ApiOutlined,
     QuestionCircleOutlined,
+    FileSearchOutlined,
+    ToolOutlined,
 } from "@ant-design/icons";
 import type { ReactNode } from "react";
 
@@ -24,7 +26,7 @@ const topics: Topic[] = [
         icon: <RocketOutlined style={{ fontSize: 20 }} />,
     },
     {
-        title: "Project Health",
+        title: "Health",
         description: "Issues, backlog, tech debt ...",
         // icon: <WarningOutlined style={{ fontSize: 20 }} />,
         icon: <BugOutlined style={{ fontSize: 20 }} />,
@@ -38,6 +40,16 @@ const topics: Topic[] = [
         title: "Conventions",
         description: "Code, structure, architecture",
         icon: <ApiOutlined style={{ fontSize: 20 }} />,
+    },
+    {
+        title: "Tech",
+        description: "Tech stack, dependencies",
+        icon: <ToolOutlined style={{ fontSize: 20 }} />,
+    },
+    {
+        title: "Explorer",
+        description: "Project map, inner READMEs",
+        icon: <FileSearchOutlined style={{ fontSize: 20 }} />,
     },
 ];
 
@@ -60,7 +72,7 @@ const BoardPage = () => {
                 <Layout className={styles.content}>
                     <Row className={styles.topics} gutter={[20, 20]}>
                         {topics.map((t) => (
-                            <Col key={t.title} span={12}>
+                            <Col key={t.title} span={8}>
                                 <Card title={t.title} extra={t.icon} hoverable>
                                     <p>{t.description}</p>
                                 </Card>
