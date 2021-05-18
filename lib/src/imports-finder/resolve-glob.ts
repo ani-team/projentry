@@ -1,9 +1,8 @@
-const path = require("path");
+import * as path from "path";
 
 // Make a glob pattern absolute
-module.exports = function (glob, options) {
-  options = Object.create({}, options);
-  options.base = options.base ? path.resolve(options.base) : process.cwd();
+export function resolveGlob(glob, options: { base?: string } | undefined) {
+  const base = options.base ? path.resolve(options.base) : process.cwd();
 
   // Store first and last characters before glob is modified
   const prefix = glob.charAt(0);
@@ -15,7 +14,7 @@ module.exports = function (glob, options) {
   }
 
   if (glob.charAt(0) !== "/") {
-    glob = path.resolve(options.base, glob);
+    glob = path.resolve(base, glob);
   }
 
   if (suffix === "/" && glob.slice(-1) !== "/") {
@@ -23,4 +22,4 @@ module.exports = function (glob, options) {
   }
 
   return isNegative ? "!" + glob : glob;
-};
+}

@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/app.js\""
+    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/app.js\"",
+    "lint": "eslint src/**/*.{js,ts}",
+    "lint:fix": "eslint --fix src/**/*.{js,ts}"
   },
   "engines": {
     "node": ">= 8"
@@ -13,6 +15,7 @@
   "devDependencies": {
     "@types/babel__core": "^7.1.14",
     "@types/node": "^14.14.36",
+    "@types/string.prototype.matchall": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "concurrently": "^6.0.2",
@@ -31,6 +34,7 @@
     "find-imports": "^1.1.0",
     "glob": "^7.1.7",
     "lodash": "^4.17.21",
+    "string.prototype.matchall": "^4.0.4",
     "vue-loader": "^15.9.7",
     "vue-template-compiler": "^2.6.12"
   }

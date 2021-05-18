@@ -1,13 +1,12 @@
-import { promises as fs } from "fs";
-import * as path from "path";
 import findAliases from "./aliases-finder";
-import * as babel from "@babel/core";
 import { findImports } from "./imports-finder";
 
-const baseDir = "/home/niyaz/Projects/work/atb/pusk";
+const baseDir = "/home/niyaz/Projects/work/GBSK_admin_front";
 
 (async () => {
   process.chdir(baseDir);
   const aliases = await findAliases(baseDir);
-  await findImports();
+  console.log(aliases);
+  const imports = await findImports(["src/**/*.{js,vue}"], aliases, baseDir);
+  console.log(JSON.stringify(imports, null, 2));
 })();
