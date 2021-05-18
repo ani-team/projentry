@@ -1,9 +1,12 @@
-import { Typography, Layout, Row, Col, Breadcrumb } from "antd";
+import { Typography, Layout, Row, Col, Breadcrumb, Divider } from "antd";
 import { useLocation, Link } from "react-router-dom";
-import { Header } from "features";
+import Markdown from "react-markdown";
 
+import { Header } from "features";
 import * as topics from "entities/topic";
 import { dom, string } from "shared/lib";
+import { getDocs } from "shared/api";
+import CodeRenderer from "./code-renderer";
 import styles from "./styles.module.scss";
 
 /**
@@ -36,7 +39,7 @@ const TopicPage = () => {
                     </Typography.Title>
                     <Layout style={{ marginTop: 40 }}>{topic?.description}</Layout>
                 </Col>
-                <Col span={12} className={styles.sider}>
+                {/* <Col span={12} className={styles.sider}>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nostrum eius
                         perspiciatis libero sed ratione nisi molestiae reprehenderit! Dolorem at et
@@ -65,10 +68,39 @@ const TopicPage = () => {
                         rerum hic dolorum. Neque atque rem ullam accusantium explicabo quod maiores
                         ea, odit quae?
                     </p>
+                </Col> */}
+                <Col span={12} className={styles.sider}>
+                    <Preview
+                        title="features/auth/hooks/index.tsx"
+                        text={getDocs().getStarted.authSnippet}
+                    />
+                    <Divider />
+                    <Preview
+                        title="features/origin/styles.scss"
+                        text={getDocs().getStarted.styleSnippet}
+                    />
                 </Col>
             </Row>
         </Layout>
     );
 };
+
+const Preview = ({ title, text }: { title: string; text: string }) => (
+    <div>
+        <h2>{title}</h2>
+        <Markdown
+            allowDangerousHtml
+            renderers={{ code: CodeRenderer }}
+            /**
+             * Github Flavored Markdown
+             * @see https://github.com/remarkjs/react-markdown#use
+             */
+            // plugins={[gfm]}
+            // {...uriTransformers}
+        >
+            {text}
+        </Markdown>
+    </div>
+);
 
 export default TopicPage;
