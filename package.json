@@ -1,0 +1,20 @@
+{
+  "name": "projentry",
+  "version": "1.0.0",
+  "description": "Assistant for your projects",
+  "scripts": {
+    "heroku-prebuild": "cd dashboard && npm install && npm run build",
+    "start": "cd dashboard && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ani-team/projentry.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ani-team/projentry/issues"
+  },
+  "homepage": "https://github.com/ani-team/projentry#readme"
+}
