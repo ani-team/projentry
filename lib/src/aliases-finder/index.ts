@@ -6,7 +6,9 @@ import VueCli from "./vue-cli.alias-finder";
 
 const aliasFinders: AliasFinder[] = [jsConfig, VueCli];
 
-export default async function findAliases(baseDir: string): Promise<Alias[]> {
+export default async function findAliases(
+  baseDir: string = process.cwd(),
+): Promise<Alias[]> {
   const rootDirFiles = await fs.readdir(path.resolve(baseDir));
   const packageJsonPath = path.resolve(baseDir, "package.json");
   let packageJson: any = null;

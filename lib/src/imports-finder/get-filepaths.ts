@@ -1,6 +1,6 @@
 import * as glob from "glob";
 import { promisify } from "util";
-import { resolveGlob } from "./imported/resolve-glob";
+import { resolveGlob } from "./resolve-glob";
 
 const globAsync = promisify(glob);
 

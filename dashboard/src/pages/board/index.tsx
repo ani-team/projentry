@@ -5,10 +5,12 @@ import {
     ApiOutlined,
     QuestionCircleOutlined,
 } from "@ant-design/icons";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 
 import { Header, Footer } from "features";
 import { dom } from "shared/lib";
+import rpc from "shared/rpc";
 import styles from "./styles.module.scss";
 
 type Topic = {
@@ -46,6 +48,12 @@ const topics: Topic[] = [
  */
 const BoardPage = () => {
     dom.useTitle("Dashboard — MyProj");
+    useEffect(() => {
+        (async () => {
+            /* eslint-disable-next-line no-console */
+            console.trace(`await rpc.testFunc(34, 42) = ${await rpc.testFunc(34, 42)}`);
+        })();
+    }, []);
 
     return (
         <Layout>
