@@ -1,47 +1,12 @@
 import { Typography, Layout, Card, Row, Col } from "antd";
-import {
-    RocketOutlined,
-    BugOutlined,
-    ApiOutlined,
-    QuestionCircleOutlined,
-} from "@ant-design/icons";
 import { useEffect } from "react";
-import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
-import { Header, Footer } from "features";
-import { dom } from "shared/lib";
+import { Header } from "features";
+import { topics } from "entities/topic";
+import { string, dom } from "shared/lib";
 // import rpc from "shared/rpc";
 import styles from "./styles.module.scss";
-
-type Topic = {
-    title: string;
-    description: string;
-    icon: ReactNode;
-};
-
-const topics: Topic[] = [
-    {
-        title: "Get Started",
-        description: "Onboaridng, setup env, ...",
-        icon: <RocketOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-        title: "Project Health",
-        description: "Issues, backlog, tech debt ...",
-        // icon: <WarningOutlined style={{ fontSize: 20 }} />,
-        icon: <BugOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-        title: "FAQ",
-        description: "Frequently Asked Questions",
-        icon: <QuestionCircleOutlined style={{ fontSize: 20 }} />,
-    },
-    {
-        title: "Conventions",
-        description: "Code, structure, architecture",
-        icon: <ApiOutlined style={{ fontSize: 20 }} />,
-    },
-];
 
 /**
  * @page Дашборд страница
@@ -68,16 +33,17 @@ const BoardPage = () => {
                 <Layout className={styles.content}>
                     <Row className={styles.topics} gutter={[20, 20]}>
                         {topics.map((t) => (
-                            <Col key={t.title} span={12}>
-                                <Card title={t.title} extra={t.icon} hoverable>
-                                    <p>{t.description}</p>
-                                </Card>
+                            <Col key={t.title} span={8}>
+                                <Link to={`/${string.slugize(t.title)}`} style={{ width: "100%" }}>
+                                    <Card title={t.title} extra={t.icon} hoverable>
+                                        <p>{t.description}</p>
+                                    </Card>
+                                </Link>
                             </Col>
                         ))}
                     </Row>
                 </Layout>
             </Layout.Content>
-            <Footer />
         </Layout>
     );
 };

@@ -2,6 +2,7 @@
 
 .root {
     position: relative;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -12,13 +13,9 @@
     @include box-shadow-bottom();
 }
 
-.locationAlert {
-    text-align: center;
-}
-
 .logo {
     display: flex;
-    flex-grow: 1;
+    // flex-grow: 1;
     align-items: center;
     color: var(--color-dark);
     transition: 0.25s;
@@ -42,38 +39,29 @@
 }
 
 .search {
-    display: flex;
     // flex: 1 0 100%;
-    flex-grow: 2;
-    align-items: center;
+    // flex-grow: 2;
+    // flex-grow: 1;
+    width: 40%;
     margin-right: 2%;
 }
 
-.toolbar {
-    display: flex;
-    align-items: center;
+.switch {
+    background: grey;
 
-    &Wallet {
-        margin-right: 10px;
+    &Icon {
+        font-size: 16px;
+        line-height: 26px;
+        color: white;
+
+        // -webkit-text-stroke: 2px black; /* width and color */
+        // @include text-shadow(10px);
     }
+}
 
-    &Action {
-        display: flex;
-        flex-direction: column;
-        margin: 0 10px;
-        line-height: 16px;
-
-        &Disabled {
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        &Icon {
-            text-align: center;
-        }
-
-        &:not(:hover) {
-            color: var(--color-dark);
-        }
-    }
+.github {
+    margin-left: 20px;
+    // display: block;
+    line-height: 100%;
+    color: var(--color-dark);
 }
