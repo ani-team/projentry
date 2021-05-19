@@ -1,10 +1,10 @@
 import { Typography, Layout, Card, Row, Col } from "antd";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Header } from "features";
 import { topics } from "entities/topic";
 import { string, dom } from "shared/lib";
-import { useEffect } from "react";
 // import rpc from "shared/rpc";
 import styles from "./styles.module.scss";
 
