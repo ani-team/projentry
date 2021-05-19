@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Header } from "features";
 import { topics } from "entities/topic";
 import { string, dom } from "shared/lib";
+import { useEffect } from "react";
+// import rpc from "shared/rpc";
 import styles from "./styles.module.scss";
 
 /**
@@ -11,6 +13,12 @@ import styles from "./styles.module.scss";
  */
 const BoardPage = () => {
     dom.useTitle("Dashboard — MyProj");
+    useEffect(() => {
+        // (async () => {
+        //     /* eslint-disable-next-line no-console */
+        //     console.trace(`await rpc.testFunc(34, 42) = ${await rpc.testFunc(34, 42)}`);
+        // })();
+    }, []);
 
     return (
         <Layout>
