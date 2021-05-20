@@ -12,7 +12,7 @@ import styles from "./styles.module.scss";
  * @page Дашборд страница
  */
 const BoardPage = () => {
-    dom.useTitle("Dashboard — MyProj");
+    dom.useTitle("Dashboard | MyProj");
     useEffect(() => {
         // (async () => {
         //     /* eslint-disable-next-line no-console */

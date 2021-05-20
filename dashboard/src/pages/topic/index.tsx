@@ -24,7 +24,7 @@ const TopicPage = (props: Props) => {
     const location = useLocation();
     const slug = location.pathname.slice(1);
     const topicName = string.unslugize(slug);
-    dom.useTitle(`${topicName} — MyProj`);
+    dom.useTitle(`${topicName} | MyProj`);
 
     const issue = params?.issueTag ? findIssue(params.issueTag) : undefined;
     // const issue = findIssue(ISSUES_TYPES.LOW_COUPLING);
