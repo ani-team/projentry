@@ -1,3 +1,4 @@
+import { visibleLinesDelta } from "shared/config";
 import * as fixtures from "./fixtures";
 
 export const PATHS = {
@@ -15,3 +16,25 @@ const docsMap: Record<string, string> = {
 export const getDocs = () => fixtures;
 
 export const getDoc = (pathname: string) => docsMap[pathname];
+
+const computeNumberArea = (number: number, radius: number) => {
+    const area = [number];
+    // FIXME: lodash?
+    for (let i = 1; i <= radius; i++) {
+        area.push(number + i);
+        area.unshift(number - i);
+    }
+    return area;
+};
+
+export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
+    const file = getDoc(pathname);
+    const totalLines = file.split("\n");
+    const issueLines = totalLines
+        .map((line, idx) => (line.includes(`FIXME: @${issueTag}`) ? idx : -1))
+        .filter((idx) => idx !== -1);
+
+    const issueAreas = issueLines.map((idx) => computeNumberArea(idx, visibleLinesDelta)).flat();
+    const issueSnippets = totalLines.filter((_, idx) => issueAreas.includes(idx));
+    return { file, issueLines, issueAreas, issueSnippets };
+};

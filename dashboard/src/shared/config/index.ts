@@ -46,8 +46,10 @@ export const issuesTypes: Issue[] = [
     },
 ];
 
+export const visibleLinesDelta = 3;
+
 export const issues = {
-    visibleLinesDelta: 3,
+    visibleLinesDelta,
     types: issuesTypes,
 };
 
