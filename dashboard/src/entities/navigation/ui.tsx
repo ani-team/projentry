@@ -19,7 +19,7 @@ export const NavBreadcrumb = () => {
             </Breadcrumb.Item>
             {subroutes.slice(1).map((sr) => (
                 <Breadcrumb.Item key={sr.href}>
-                    <Link to={sr.href}>{string.capitalize(sr.slug)}</Link>
+                    <Link to={sr.href}>{decodeURIComponent(string.capitalize(sr.slug))}</Link>
                 </Breadcrumb.Item>
             ))}
         </Breadcrumb>
