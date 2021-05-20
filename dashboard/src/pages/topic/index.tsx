@@ -4,7 +4,7 @@ import { useLocation, Link, RouteChildrenProps } from "react-router-dom";
 import { Header } from "features";
 // import * as topics from "entities/topic";
 import { File } from "entities/file";
-import { IssueRow, IssueCard } from "entities/issue";
+import { IssueRow, IssueCard, IssueStat } from "entities/issue";
 import { dom, string } from "shared/lib";
 import { PATHS, getFileIssueSnippets } from "shared/api";
 import { issuesTypes, findIssue } from "shared/config";
@@ -88,6 +88,7 @@ const TopicPage = (props: Props) => {
                     {issue && (
                         <>
                             <IssueCard data={issue} />
+                            <IssueStat data={issue} />
                             <Divider />
                             <div>
                                 {Object.values(PATHS).map((pathname) => (

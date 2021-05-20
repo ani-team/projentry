@@ -1,4 +1,4 @@
-import { Card, Row, Col, Result } from "antd";
+import { Card, Row, Col, Result, Badge, Statistic } from "antd";
 import { Link } from "react-router-dom";
 
 import { getIssueIcon } from "shared/config";
@@ -21,9 +21,57 @@ type Props = {
 //     );
 // };
 
+const SEVERITY_LABEL: Record<number, string> = {
+    1: "LOW",
+    2: "MEDIUM",
+    3: "HIGH",
+    4: "CRITICAL",
+    5: "BLOCKER",
+};
+
+const SEVERITY_COLOR: Record<number, string> = {
+    1: "blue",
+    2: "gold",
+    3: "#f50",
+    4: "red",
+    5: "pink",
+};
+
 export const IssueCard = ({ data }: Props) => {
     const Icon = getIssueIcon(data.icon);
-    return <Result icon={<Icon />} status="warning" title={data.tag} subTitle={data.description} />;
+    return (
+        <Result
+            icon={<Icon style={{ color: SEVERITY_COLOR[data.severity] }} />}
+            title={data.tag}
+            subTitle={data.description}
+        />
+    );
+};
+
+const MAX_SPAN = 24;
+export const IssueStat = ({ data }: Props) => {
+    const stats = [
+        // @hardcoded
+        { title: "Occurences", value: 11, valueStyle: {} },
+        {
+            title: "Severity",
+            value: SEVERITY_LABEL[data.severity],
+            valueStyle: { color: SEVERITY_COLOR[data.severity] },
+        },
+        // @hardcoded
+        { title: "How long ago", value: "3 months", valueStyle: {} },
+    ];
+    return (
+        <Row>
+            {stats.map((stat) => (
+                <Col key={stat.title} span={MAX_SPAN / stats.length}>
+                    <Card>
+                        <Statistic {...stat} />
+                    </Card>
+                </Col>
+            ))}
+        </Row>
+    );
 };
 
 export const IssueRowView = ({ data }: Props) => {
@@ -47,8 +95,16 @@ export const IssueRowView = ({ data }: Props) => {
 
 export const IssueRow = ({ data }: Props) => {
     return (
-        <Card hoverable className={styles.row}>
-            <IssueRowView data={data} />
-        </Card>
+        <Badge.Ribbon
+            // style={{ backgroundColor: "#108ee9" }}
+            color={SEVERITY_COLOR[data.severity]}
+            // text={SEVERITY[data.severity]}
+            placement="end"
+            text={`Severity: ${SEVERITY_LABEL[data.severity]}`}
+        >
+            <Card hoverable className={styles.row}>
+                <IssueRowView data={data} />
+            </Card>
+        </Badge.Ribbon>
     );
 };

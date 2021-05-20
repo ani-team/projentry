@@ -27,13 +27,13 @@ export type Issue = {
 
 export const issuesTypes: Issue[] = [
     {
-        icon: "BookOutlined",
+        icon: "BlockOutlined",
         tag: ISSUES_TYPES.LOW_COUPLING,
         description: "Сильная связность модулей. Будет зарезолвлено в ближайшее время",
         severity: 4,
     },
     {
-        icon: "CopyOutlined",
+        icon: "CopyFilled",
         tag: ISSUES_TYPES.DRY,
         description: "Повторение логики. Присмотреться к вынесению в общеиспользуемое",
         severity: 2,
@@ -42,7 +42,7 @@ export const issuesTypes: Issue[] = [
         icon: "StrikethroughOutlined",
         tag: ISSUES_TYPES.HARDCODED,
         description: "Захардкоженная логика",
-        severity: 2,
+        severity: 3,
     },
 ];
 
