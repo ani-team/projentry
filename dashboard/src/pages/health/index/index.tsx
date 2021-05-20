@@ -1,4 +1,4 @@
-import { Typography, Layout, Card, Col, Row, Empty } from "antd";
+import { Typography, Layout, Card, Col, Row } from "antd";
 import cn from "classnames";
 import { Link } from "react-router-dom";
 
