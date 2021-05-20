@@ -100,9 +100,7 @@ type RowProps = Props & {
 export const IssueRow = ({ data, active }: RowProps) => {
     return (
         <Badge.Ribbon
-            // style={{ backgroundColor: "#108ee9" }}
             color={SEVERITY_COLOR[data.severity]}
-            // text={SEVERITY[data.severity]}
             placement="end"
             text={`Severity: ${SEVERITY_LABEL[data.severity]}`}
         >
