@@ -3,11 +3,11 @@ import { useLocation, Link, RouteChildrenProps } from "react-router-dom";
 
 import { Header } from "features";
 // import * as topics from "entities/topic";
-// import { File } from "entities/file";
+import { File } from "entities/file";
 import { IssueRow, IssueCard } from "entities/issue";
 import { dom, string } from "shared/lib";
-// import { PATHS } from "shared/api";
-import { issuesTypes, findIssue } from "shared/config";
+import { PATHS, getFileIssueSnippets } from "shared/api";
+import { issuesTypes, findIssue, ISSUES_TYPES } from "shared/config";
 import styles from "./styles.module.scss";
 
 type Props = RouteChildrenProps<{
@@ -19,7 +19,7 @@ type Props = RouteChildrenProps<{
  */
 // eslint-disable-next-line max-lines-per-function
 const TopicPage = (props: Props) => {
-    const { params } = props.match || {};
+    const { params } = props?.match || {};
 
     const location = useLocation();
     const slug = location.pathname.slice(1);
@@ -27,7 +27,7 @@ const TopicPage = (props: Props) => {
     dom.useTitle(`${topicName} — MyProj`);
 
     const issue = params?.issueTag ? findIssue(params.issueTag) : undefined;
-
+    // const issue = findIssue(ISSUES_TYPES.LOW_COUPLING);
     // const topic = topics.findByTitleSlug(slug);
 
     return (
@@ -85,9 +85,30 @@ const TopicPage = (props: Props) => {
                     </p>
                 </Col> */}
                 <Col span={12} className={styles.sider}>
-                    {issue && <IssueCard data={issue} />}
+                    {issue && (
+                        <>
+                            <IssueCard data={issue} />
+                            <Divider />
+                            <div>
+                                {Object.values(PATHS)
+                                    // .slice(0, 1)
+                                    .filter((_, idx) => idx % 2 === 0)
+                                    .map((pathname) => (
+                                        // <div key={pathname}>{pathname}</div>
+                                        <File.Preview
+                                            key={pathname}
+                                            pathname={pathname}
+                                            content={
+                                                getFileIssueSnippets(pathname, issue?.tag || "")
+                                                    .issueSnippets
+                                            }
+                                        />
+                                    ))}
+                            </div>
+                        </>
+                    )}
+
                     {/* <File.LazyPreview pathname={PATHS.AUTH_HOOK} />
-                    <Divider />
                     <File.LazyPreview pathname={PATHS.STYLES_1} /> */}
                 </Col>
             </Row>

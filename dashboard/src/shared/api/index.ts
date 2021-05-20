@@ -30,11 +30,17 @@ const computeNumberArea = (number: number, radius: number) => {
 export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
     const file = getDoc(pathname);
     const totalLines = file.split("\n");
-    const issueLines = totalLines
+    const issueLinesIdx = totalLines
         .map((line, idx) => (line.includes(`FIXME: @${issueTag}`) ? idx : -1))
         .filter((idx) => idx !== -1);
 
-    const issueAreas = issueLines.map((idx) => computeNumberArea(idx, visibleLinesDelta)).flat();
-    const issueSnippets = totalLines.filter((_, idx) => issueAreas.includes(idx));
-    return { file, issueLines, issueAreas, issueSnippets };
+    const issueAreasIdx = issueLinesIdx
+        .map((idx) => computeNumberArea(idx, visibleLinesDelta))
+        .flat();
+    const issueLines = totalLines
+        .map((line, idx) => `${idx}\t${line}`)
+        .filter((_, idx) => issueAreasIdx.includes(idx));
+
+    const issueSnippets = issueLines.join("\n");
+    return { file, issueSnippets };
 };

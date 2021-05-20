@@ -154,6 +154,7 @@ import { Error } from "shared/ui/error";
 type Props = RouteChildrenProps<{ ... }>;
 
 export const TaskDetailsPage = (props: Props) => {
+    // FIXME: @hardcoded
     const taskId = Number(props.match?.params.taskId);
     // FIXME: @hardcoded
     const task = useSelector((store) => store.entities.tasks[taskId]);
