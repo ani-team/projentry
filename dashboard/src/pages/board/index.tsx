@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Header } from "features";
 import { topics } from "entities/topic";
 import { string, dom } from "shared/lib";
+import { PROJECT_NAME } from "shared/config";
 // import rpc from "shared/rpc";
 import styles from "./styles.module.scss";
 
@@ -26,7 +27,7 @@ const BoardPage = () => {
             <Header />
             <Layout.Content className={styles.root}>
                 <Typography.Title className={styles.title} level={2}>
-                    MyProj
+                    {PROJECT_NAME}
                 </Typography.Title>
                 <Typography.Title className={styles.title} level={4} type="secondary">
                     Project dashboard

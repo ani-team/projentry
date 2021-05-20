@@ -1,6 +1,8 @@
 import * as AntdIcon from "@ant-design/icons";
 import type { ComponentType, SVGProps } from "react";
 
+export const PROJECT_NAME = "MyProj";
+
 export const docs = {
     getStarted: {
         paths: ["/docs/get-started.md"],
@@ -17,8 +19,6 @@ export const ISSUES_TYPES = {
 };
 
 export type IconType = keyof typeof AntdIcon;
-
-export const PROJECT_NAME = "MyProj";
 
 export type Issue = {
     icon: IconType;
