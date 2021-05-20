@@ -1,4 +1,5 @@
 import { Card, Row, Col, Result, Badge, Statistic } from "antd";
+import cn from "classnames";
 import { Link } from "react-router-dom";
 
 import { getIssueIcon } from "shared/config";
@@ -93,7 +94,10 @@ export const IssueRowView = ({ data }: Props) => {
     );
 };
 
-export const IssueRow = ({ data }: Props) => {
+type RowProps = Props & {
+    active?: boolean;
+};
+export const IssueRow = ({ data, active }: RowProps) => {
     return (
         <Badge.Ribbon
             // style={{ backgroundColor: "#108ee9" }}
@@ -102,7 +106,7 @@ export const IssueRow = ({ data }: Props) => {
             placement="end"
             text={`Severity: ${SEVERITY_LABEL[data.severity]}`}
         >
-            <Card hoverable className={styles.row}>
+            <Card className={cn(styles.row, { [styles.rowActive]: active })}>
                 <IssueRowView data={data} />
             </Card>
         </Badge.Ribbon>

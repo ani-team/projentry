@@ -48,7 +48,10 @@ const TopicPage = (props: Props) => {
                         <Row gutter={[0, 20]}>
                             {issuesTypes.map((issueType) => (
                                 <Col key={issueType.tag} span={24}>
-                                    <IssueRow data={issueType} />
+                                    <IssueRow
+                                        data={issueType}
+                                        active={issueType.tag === issue?.tag}
+                                    />
                                 </Col>
                             ))}
                         </Row>

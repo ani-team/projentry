@@ -6,5 +6,10 @@
 }
 
 .row {
+    box-sizing: border-box;
     cursor: default;
+
+    &Active {
+        border-color: var(--color-primary);
+    }
 }
