@@ -9,6 +9,9 @@ type PreviewProps = {
 
 export const Preview = ({ pathname, content }: PreviewProps) => {
     const extension = path.extname(pathname).slice(1);
+
+    if (!content) return null;
+
     return (
         <div>
             <h2>{pathname}</h2>

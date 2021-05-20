@@ -31,7 +31,7 @@ export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
     const file = getDoc(pathname);
     const totalLines = file.split("\n");
     const issueLinesIdx = totalLines
-        .map((line, idx) => (line.includes(`FIXME: @${issueTag}`) ? idx : -1))
+        .map((line, idx) => (line.includes(`@${issueTag}`) ? idx : -1))
         .filter((idx) => idx !== -1);
 
     const issueAreasIdx = issueLinesIdx

@@ -7,7 +7,7 @@ import { File } from "entities/file";
 import { IssueRow, IssueCard } from "entities/issue";
 import { dom, string } from "shared/lib";
 import { PATHS, getFileIssueSnippets } from "shared/api";
-import { issuesTypes, findIssue, ISSUES_TYPES } from "shared/config";
+import { issuesTypes, findIssue } from "shared/config";
 import styles from "./styles.module.scss";
 
 type Props = RouteChildrenProps<{
@@ -90,20 +90,16 @@ const TopicPage = (props: Props) => {
                             <IssueCard data={issue} />
                             <Divider />
                             <div>
-                                {Object.values(PATHS)
-                                    // .slice(0, 1)
-                                    .filter((_, idx) => idx % 2 === 0)
-                                    .map((pathname) => (
-                                        // <div key={pathname}>{pathname}</div>
-                                        <File.Preview
-                                            key={pathname}
-                                            pathname={pathname}
-                                            content={
-                                                getFileIssueSnippets(pathname, issue?.tag || "")
-                                                    .issueSnippets
-                                            }
-                                        />
-                                    ))}
+                                {Object.values(PATHS).map((pathname) => (
+                                    <File.Preview
+                                        key={pathname}
+                                        pathname={pathname}
+                                        content={
+                                            getFileIssueSnippets(pathname, issue?.tag || "")
+                                                .issueSnippets
+                                        }
+                                    />
+                                ))}
                             </div>
                         </>
                     )}
