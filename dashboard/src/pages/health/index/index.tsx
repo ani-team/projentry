@@ -3,6 +3,7 @@ import cn from "classnames";
 import { Link } from "react-router-dom";
 
 import { Header } from "features";
+import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
 import { Split } from "shared/ui";
 import { routes } from "../routes";
@@ -15,6 +16,7 @@ const HealthIndexPage = () => {
     return (
         <Split header={<Header />}>
             <Split.Main>
+                <NavBreadcrumb />
                 <Typography.Title className="mt-40" level={2}>
                     Project Health
                 </Typography.Title>

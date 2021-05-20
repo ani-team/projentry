@@ -1,10 +1,10 @@
-import { Typography, Layout, Row, Col, Breadcrumb, Divider } from "antd";
-import { Link, RouteChildrenProps } from "react-router-dom";
+import { Typography, Layout, Row, Col, Divider } from "antd";
+import { RouteChildrenProps } from "react-router-dom";
 
 import { Header } from "features";
-// import * as topics from "entities/topic";
 import { File } from "entities/file";
 import { IssueRow, IssueCard, IssueStat } from "entities/issue";
+import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
 import { PATHS, getFileIssueSnippets } from "shared/api";
 import { issuesTypes, findIssue } from "shared/config";
@@ -28,13 +28,7 @@ const IssuesPage = (props: Props) => {
     return (
         <Split header={<Header />}>
             <Split.Main>
-                <Breadcrumb>
-                    <Breadcrumb.Item>
-                        <Link to="/">MyProj</Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>Health</Breadcrumb.Item>
-                    <Breadcrumb.Item>Issues</Breadcrumb.Item>
-                </Breadcrumb>
+                <NavBreadcrumb />
                 <Typography.Title className="mt-40" level={2}>
                     Issues
                 </Typography.Title>

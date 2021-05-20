@@ -1,8 +1,9 @@
-import { Typography, Layout, Breadcrumb } from "antd";
-import { useLocation, Link } from "react-router-dom";
+import { Typography, Layout } from "antd";
+import { useLocation } from "react-router-dom";
 
 import { Header } from "features";
 import * as topics from "entities/topic";
+import { NavBreadcrumb } from "entities/navigation";
 import { dom, string } from "shared/lib";
 import { Split } from "shared/ui";
 
@@ -21,12 +22,7 @@ const TopicPage = () => {
     return (
         <Split header={<Header />}>
             <Split.Main>
-                <Breadcrumb>
-                    <Breadcrumb.Item>
-                        <Link to="/">MyProj</Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>{topicName}</Breadcrumb.Item>
-                </Breadcrumb>
+                <NavBreadcrumb />
                 <Typography.Title className="mt-40" level={2}>
                     {topicName}
                 </Typography.Title>

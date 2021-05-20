@@ -18,6 +18,8 @@ export const ISSUES_TYPES = {
 
 export type IconType = keyof typeof AntdIcon;
 
+export const PROJECT_NAME = "MyProj";
+
 export type Issue = {
     icon: IconType;
     tag: typeof ISSUES_TYPES[keyof typeof ISSUES_TYPES];
