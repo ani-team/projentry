@@ -1,12 +1,11 @@
 import { Typography, Layout, Row, Col, Breadcrumb, Divider } from "antd";
 import { useLocation, Link } from "react-router-dom";
-import Markdown from "react-markdown";
 
 import { Header } from "features";
 import * as topics from "entities/topic";
+import { File } from "entities/file";
 import { dom, string } from "shared/lib";
-import { getDocs } from "shared/api";
-import CodeRenderer from "./code-renderer";
+import { PATHS } from "shared/api";
 import styles from "./styles.module.scss";
 
 /**
@@ -70,37 +69,13 @@ const TopicPage = () => {
                     </p>
                 </Col> */}
                 <Col span={12} className={styles.sider}>
-                    <Preview
-                        title="features/auth/hooks/index.tsx"
-                        text={getDocs().getStarted.authSnippet}
-                    />
+                    <File.LazyPreview pathname={PATHS.AUTH_HOOK} />
                     <Divider />
-                    <Preview
-                        title="features/origin/styles.scss"
-                        text={getDocs().getStarted.styleSnippet}
-                    />
+                    <File.LazyPreview pathname={PATHS.STYLES_1} />
                 </Col>
             </Row>
         </Layout>
     );
 };
-
-const Preview = ({ title, text }: { title: string; text: string }) => (
-    <div>
-        <h2>{title}</h2>
-        <Markdown
-            allowDangerousHtml
-            renderers={{ code: CodeRenderer }}
-            /**
-             * Github Flavored Markdown
-             * @see https://github.com/remarkjs/react-markdown#use
-             */
-            // plugins={[gfm]}
-            // {...uriTransformers}
-        >
-            {text}
-        </Markdown>
-    </div>
-);
 
 export default TopicPage;
