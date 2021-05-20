@@ -1,11 +1,11 @@
 import { Typography, Layout, Row, Col, Breadcrumb, Divider } from "antd";
-import { useLocation, Link, RouteChildrenProps } from "react-router-dom";
+import { Link, RouteChildrenProps } from "react-router-dom";
 
 import { Header } from "features";
 // import * as topics from "entities/topic";
 import { File } from "entities/file";
 import { IssueRow, IssueCard, IssueStat } from "entities/issue";
-import { dom, string } from "shared/lib";
+import { dom } from "shared/lib";
 import { PATHS, getFileIssueSnippets } from "shared/api";
 import { issuesTypes, findIssue } from "shared/config";
 import { Split } from "shared/ui";
@@ -21,10 +21,7 @@ type Props = RouteChildrenProps<{
 const IssuesPage = (props: Props) => {
     const { params } = props?.match || {};
 
-    const location = useLocation();
-    const slug = location.pathname.slice(1);
-    const topicName = string.unslugize(slug);
-    dom.useTitle(`${topicName} | MyProj`);
+    dom.useTitle(`Issues | MyProj`);
 
     const issue = params?.issueTag ? findIssue(params.issueTag) : undefined;
 
@@ -35,10 +32,11 @@ const IssuesPage = (props: Props) => {
                     <Breadcrumb.Item>
                         <Link to="/">MyProj</Link>
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item>{topicName}</Breadcrumb.Item>
+                    <Breadcrumb.Item>Health</Breadcrumb.Item>
+                    <Breadcrumb.Item>Issues</Breadcrumb.Item>
                 </Breadcrumb>
                 <Typography.Title className="mt-40" level={2}>
-                    {topicName}
+                    Issues
                 </Typography.Title>
                 <Layout className="mt-40">
                     <Row gutter={[0, 20]}>
