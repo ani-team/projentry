@@ -1,26 +1,34 @@
 import { Typography, Layout, Row, Col, Breadcrumb, Divider } from "antd";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, RouteChildrenProps } from "react-router-dom";
 
 import { Header } from "features";
-import * as topics from "entities/topic";
-import { File } from "entities/file";
-import { IssueRow } from "entities/issue";
+// import * as topics from "entities/topic";
+// import { File } from "entities/file";
+import { IssueRow, IssueCard } from "entities/issue";
 import { dom, string } from "shared/lib";
-import { PATHS } from "shared/api";
-import { issuesTypes } from "shared/config";
+// import { PATHS } from "shared/api";
+import { issuesTypes, findIssue } from "shared/config";
 import styles from "./styles.module.scss";
+
+type Props = RouteChildrenProps<{
+    issueTag?: string;
+}>;
 
 /**
  * @page Страница заглушка для топика
  */
 // eslint-disable-next-line max-lines-per-function
-const TopicPage = () => {
+const TopicPage = (props: Props) => {
+    const { params } = props.match || {};
+
     const location = useLocation();
     const slug = location.pathname.slice(1);
     const topicName = string.unslugize(slug);
     dom.useTitle(`${topicName} — MyProj`);
 
-    const topic = topics.findByTitleSlug(slug);
+    const issue = params?.issueTag ? findIssue(params.issueTag) : undefined;
+
+    // const topic = topics.findByTitleSlug(slug);
 
     return (
         <Layout className={styles.root}>
@@ -31,15 +39,12 @@ const TopicPage = () => {
                         <Breadcrumb.Item>
                             <Link to="/">MyProj</Link>
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            {topic?.icon} <span>{topicName}</span>
-                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>{topicName}</Breadcrumb.Item>
                     </Breadcrumb>
                     <Typography.Title style={{ marginTop: 40 }} level={2}>
                         {topicName}
                     </Typography.Title>
                     <Layout style={{ marginTop: 40 }}>
-                        {topic?.description}
                         <Row gutter={[0, 20]}>
                             {issuesTypes.map((issueType) => (
                                 <Col key={issueType.tag} span={24}>
@@ -80,9 +85,10 @@ const TopicPage = () => {
                     </p>
                 </Col> */}
                 <Col span={12} className={styles.sider}>
-                    <File.LazyPreview pathname={PATHS.AUTH_HOOK} />
+                    {issue && <IssueCard data={issue} />}
+                    {/* <File.LazyPreview pathname={PATHS.AUTH_HOOK} />
                     <Divider />
-                    <File.LazyPreview pathname={PATHS.STYLES_1} />
+                    <File.LazyPreview pathname={PATHS.STYLES_1} /> */}
                 </Col>
             </Row>
         </Layout>

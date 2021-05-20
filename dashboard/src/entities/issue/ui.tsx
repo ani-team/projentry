@@ -1,4 +1,4 @@
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, Result } from "antd";
 import { Link } from "react-router-dom";
 
 import { getIssueIcon } from "shared/config";
@@ -17,9 +17,14 @@ type Props = {
 //     const Icon = getIssueIcon(issue.icon);
 
 //     return (
-//         <Result status="warning" title={issue.tag} subTitle={issue.description} extra={<Icon />} />
+//
 //     );
 // };
+
+export const IssueCard = ({ data }: Props) => {
+    const Icon = getIssueIcon(data.icon);
+    return <Result icon={<Icon />} status="warning" title={data.tag} subTitle={data.description} />;
+};
 
 export const IssueRowView = ({ data }: Props) => {
     const Icon = getIssueIcon(data.icon);

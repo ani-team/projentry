@@ -15,6 +15,7 @@ const Routing = () => {
             {/* FIXME: temp solution! */}
             <Route exact path="/get-started" component={TopicPage} />
             <Route exact path="/health" component={TopicPage} />
+            <Route path="/health/issues/:issueTag" component={TopicPage} />
             <Route exact path="/faq" component={TopicPage} />
             <Route exact path="/conventions" component={TopicPage} />
             <Route exact path="/tech" component={TopicPage} />
