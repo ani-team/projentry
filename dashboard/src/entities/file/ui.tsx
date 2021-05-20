@@ -20,6 +20,7 @@ type LazyPreviewProps = {
 };
 
 export const LazyPreview = ({ pathname }: LazyPreviewProps) => {
+    // FIXME: load later by selectors?
     const content = getDoc(pathname);
     const extension = path.extname(pathname).slice(1);
     return <Preview pathname={pathname} content={content} extension={extension} />;

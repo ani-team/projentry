@@ -4,8 +4,10 @@ import { useLocation, Link } from "react-router-dom";
 import { Header } from "features";
 import * as topics from "entities/topic";
 import { File } from "entities/file";
+import { IssueRow } from "entities/issue";
 import { dom, string } from "shared/lib";
 import { PATHS } from "shared/api";
+import { issuesTypes } from "shared/config";
 import styles from "./styles.module.scss";
 
 /**
@@ -36,7 +38,16 @@ const TopicPage = () => {
                     <Typography.Title style={{ marginTop: 40 }} level={2}>
                         {topicName}
                     </Typography.Title>
-                    <Layout style={{ marginTop: 40 }}>{topic?.description}</Layout>
+                    <Layout style={{ marginTop: 40 }}>
+                        {topic?.description}
+                        <Row gutter={[0, 20]}>
+                            {issuesTypes.map((issueType) => (
+                                <Col key={issueType.tag} span={24}>
+                                    <IssueRow data={issueType} />
+                                </Col>
+                            ))}
+                        </Row>
+                    </Layout>
                 </Col>
                 {/* <Col span={12} className={styles.sider}>
                     <p>
