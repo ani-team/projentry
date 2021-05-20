@@ -1,4 +1,4 @@
-import { Layout, Row, Col } from "antd";
+import { Layout, Row, Col, Empty } from "antd";
 import type { ReactNode, FC } from "react";
 
 import styles from "./styles.module.scss";
@@ -10,6 +10,7 @@ type Props = {
 type Subcomponents = {
     Main: typeof Main;
     Sider: typeof Sider;
+    Placeholder: typeof Placeholder;
 };
 
 const Split: FC<Props> & Subcomponents = ({ header, children }) => {
@@ -33,7 +34,14 @@ const Sider: FC = ({ children }) => (
     </Col>
 );
 
+const Placeholder: FC<{ title?: string }> = ({ title = "Select section for continue" }) => (
+    <Row className="h100" align="middle" justify="center">
+        <Empty description={title} />
+    </Row>
+);
+
 Split.Main = Main;
 Split.Sider = Sider;
+Split.Placeholder = Placeholder;
 
 export { Split };

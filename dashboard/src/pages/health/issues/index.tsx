@@ -62,6 +62,7 @@ const IssuesPage = (props: Props) => {
                         </div>
                     </>
                 )}
+                {!issue && <Split.Placeholder />}
             </Split.Sider>
         </Split>
     );

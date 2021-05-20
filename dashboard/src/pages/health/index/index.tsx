@@ -39,9 +39,7 @@ const HealthIndexPage = () => {
                 </Layout>
             </Split.Main>
             <Split.Sider>
-                <Row className="h100" align="middle" justify="center">
-                    <Empty description="Select section for continue" />
-                </Row>
+                <Split.Placeholder />
             </Split.Sider>
         </Split>
     );
