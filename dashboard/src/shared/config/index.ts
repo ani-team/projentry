@@ -13,6 +13,7 @@ export const docs = {
 export const ISSUES_TYPES = {
     LOW_COUPLING: "lowCoupling" as const,
     DRY: "dry" as const,
+    HARDCODED: "hardcoded" as const,
 };
 
 export type IconType = keyof typeof AntdIcon;
@@ -35,6 +36,12 @@ export const issuesTypes: Issue[] = [
         icon: "CopyOutlined",
         tag: ISSUES_TYPES.DRY,
         description: "Повторение логики. Присмотреться к вынесению в общеиспользуемое",
+        severity: 2,
+    },
+    {
+        icon: "StrikethroughOutlined",
+        tag: ISSUES_TYPES.HARDCODED,
+        description: "Захардкоженная логика",
         severity: 2,
     },
 ];
