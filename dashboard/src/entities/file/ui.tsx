@@ -1,15 +1,17 @@
+import path from "path";
 import { Markdown } from "shared/ui";
 import { getDoc } from "shared/api";
 
 type PreviewProps = {
-    title: string;
+    pathname: string;
     content: string;
+    extension: string;
 };
 
-export const Preview = ({ title, content }: PreviewProps) => (
+export const Preview = ({ pathname, content, extension }: PreviewProps) => (
     <div>
-        <h2>{title}</h2>
-        <Markdown text={content} />
+        <h2>{pathname}</h2>
+        <Markdown text={`\`\`\`${extension}\n${content}\n\`\`\``} />
     </div>
 );
 
@@ -19,5 +21,6 @@ type LazyPreviewProps = {
 
 export const LazyPreview = ({ pathname }: LazyPreviewProps) => {
     const content = getDoc(pathname);
-    return <Preview title={pathname} content={content} />;
+    const extension = path.extname(pathname).slice(1);
+    return <Preview pathname={pathname} content={content} extension={extension} />;
 };

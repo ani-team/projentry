@@ -100,9 +100,7 @@ export const TasksFilters = () => {
 \`\`\`
 `;
 
-export const authSnippet = `
-\`\`\`tsx
-...
+export const authSnippet = `...
 // FIXME: @lowCoupling
 import Origin from "features/origin";
 ...
@@ -120,13 +118,15 @@ export const useAuth = () => {
     const logout = () => {
         ...
     };
-};
+};`;
+
+export const authSnippetMd = `
+\`\`\`tsx
+${authSnippet}
 \`\`\`
 `;
 
-export const styleSnippet = `
-\`\`\`scss
-.origin {
+export const styleSnippet = `.origin {
     // pos
     position: fixed;
     right: 20px;
@@ -135,5 +135,10 @@ export const styleSnippet = `
     // @dry Auth.page
     color: var(--clr-gray--400);
     cursor: pointer;
+`;
+
+export const styleSnippetMd = `
+\`\`\`scss
+${styleSnippet}
 \`\`\`
 `;
