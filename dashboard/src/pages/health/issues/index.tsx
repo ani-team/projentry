@@ -21,7 +21,7 @@ type Props = RouteChildrenProps<{
 const IssuesPage = (props: Props) => {
     const { params } = props?.match || {};
 
-    dom.useTitle(`Issues | MyProj`);
+    dom.useProjectTitle("Issues");
 
     const issue = params?.issueTag ? findIssue(params.issueTag) : undefined;
 

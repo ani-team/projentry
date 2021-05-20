@@ -11,7 +11,7 @@ import styles from "./styles.module.scss";
 
 // eslint-disable-next-line max-lines-per-function
 const HealthIndexPage = () => {
-    dom.useTitle(`Health | MyProj`);
+    dom.useProjectTitle(`Health`);
 
     return (
         <Split header={<Header />}>

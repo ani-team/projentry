@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { PROJECT_NAME } from "shared/config";
 
 /**
  * @hook Задать title странице
@@ -8,6 +9,8 @@ export const useTitle = (title: string) => {
         document.title = title;
     }, [title]);
 };
+
+export const useProjectTitle = (title: string) => useTitle(`${title} | ${PROJECT_NAME}`);
 
 /**
  * Временная реализация скроллинга к верху страницы

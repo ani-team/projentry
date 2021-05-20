@@ -15,7 +15,8 @@ const TopicPage = () => {
     const location = useLocation();
     const slug = location.pathname.slice(1);
     const topicName = string.unslugize(slug);
-    dom.useTitle(`${topicName} | MyProj`);
+
+    dom.useProjectTitle(topicName);
 
     const topic = topics.findByTitleSlug(slug);
 
