@@ -84,9 +84,7 @@ export const IssueRowView = ({ data }: Props) => {
                 <Icon className={styles.icon} />
             </Col>
             <Col span={20}>
-                <h3>
-                    <Link to={`/health/issues/${data.tag}`}>{data.tag}</Link>
-                </h3>
+                <h3>{data.tag}</h3>
 
                 <span>{data.description}</span>
             </Col>
@@ -104,9 +102,11 @@ export const IssueRow = ({ data, active }: RowProps) => {
             placement="end"
             text={`Severity: ${SEVERITY_LABEL[data.severity]}`}
         >
-            <Card className={cn(styles.row, { [styles.rowActive]: active })}>
-                <IssueRowView data={data} />
-            </Card>
+            <Link to={`/health/issues/${data.tag}`}>
+                <Card className={cn(styles.row, { [styles.rowActive]: active })} hoverable>
+                    <IssueRowView data={data} />
+                </Card>
+            </Link>
         </Badge.Ribbon>
     );
 };
