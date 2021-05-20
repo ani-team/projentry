@@ -48,18 +48,19 @@ const IssuesPage = (props: Props) => {
                         <IssueCard data={issue} />
                         <IssueStat data={issue} />
                         <Divider />
-                        <div>
+                        <Row gutter={[0, 20]}>
                             {Object.values(PATHS).map((pathname) => (
-                                <File.Preview
-                                    key={pathname}
-                                    pathname={pathname}
-                                    content={
-                                        getFileIssueSnippets(pathname, issue?.tag || "")
-                                            .issueSnippets
-                                    }
-                                />
+                                <Col key={pathname} span={24}>
+                                    <File.Preview
+                                        pathname={pathname}
+                                        content={
+                                            getFileIssueSnippets(pathname, issue?.tag || "")
+                                                .issueSnippets
+                                        }
+                                    />
+                                </Col>
                             ))}
-                        </div>
+                        </Row>
                     </>
                 )}
                 {!issue && <Split.Placeholder />}

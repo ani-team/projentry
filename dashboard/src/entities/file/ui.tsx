@@ -1,6 +1,7 @@
 import path from "path";
 import { Markdown } from "shared/ui";
 import { getDoc } from "shared/api";
+import styles from "./styles.module.scss";
 
 type PreviewProps = {
     pathname: string;
@@ -13,9 +14,15 @@ export const Preview = ({ pathname, content }: PreviewProps) => {
     if (!content) return null;
 
     return (
-        <div>
-            <h2>{pathname}</h2>
-            <Markdown text={`\`\`\`${extension}\n${content}\n\`\`\``} />
+        <div className={styles.root}>
+            <Markdown
+                className={styles.rootPathname}
+                text={`\`\`\`${extension}\n${pathname}\n\`\`\``}
+            />
+            <Markdown
+                className={styles.rootContent}
+                text={`\`\`\`${extension}\n${content}\n\`\`\``}
+            />
         </div>
     );
 };
