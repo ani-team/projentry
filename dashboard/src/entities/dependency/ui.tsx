@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import { Card, Empty, Row, Skeleton } from "antd";
 
 import { GithubMarkdown } from "shared/ui";
+import { requests } from "shared/lib";
 
 type Dependency = {
     name: string;
@@ -12,33 +12,36 @@ type Props = {
     data: Dependency;
 };
 
-// FIXME: @hardcoded @manageAccess @shareable
-// eslint-disable-next-line max-params
-function useRequest<T = any>(resolver: () => Promise<T>, key: string, debounce = 300) {
-    const [data, setData] = useState<T | null>(null);
-    const [loading, setLoading] = useState(true);
+type User = {
+    name?: string;
+    email?: string;
+    username?: string;
+};
 
-    useEffect(() => {
-        const debounceLoading = setTimeout(() => {
-            setLoading(true);
-        }, debounce);
-
-        resolver()
-            .then((response) => {
-                setData(response);
-                clearTimeout(debounceLoading);
-                setLoading(false);
-            })
-            .catch(() => {
-                setData(null);
-                clearTimeout(debounceLoading);
-                setLoading(false);
-            });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [key]);
-
-    return { data, loading };
-}
+// FIXME: @hardcoded
+type DependencyResponse = {
+    analyzedAt: string;
+    collected: {
+        metadata: {
+            name: string;
+            version: string;
+            description: string;
+            keywords: string[];
+            date: string;
+            author: User;
+            publisher: User;
+            maintainers: User[];
+            links: {
+                npm: string;
+                homepage?: string;
+                repository?: string;
+                bugs?: string;
+            };
+            license: string;
+            readme?: string;
+        };
+    };
+};
 
 export const DependencyItem = ({ data }: Props) => {
     return (
@@ -51,7 +54,7 @@ export const DependencyItem = ({ data }: Props) => {
 // FIXME: @tooComplexity
 export const DependencyCard = ({ data }: Props) => {
     const dependencyURI = encodeURIComponent(data.name);
-    const query = useRequest<DependencyResponse>(
+    const query = requests.useRequest<DependencyResponse>(
         () => fetch(`https://api.npms.io/v2/package/${dependencyURI}`).then((r) => r.json()),
         data.name,
     );
@@ -86,39 +89,3 @@ export const DependencyCard = ({ data }: Props) => {
         </article>
     );
 };
-
-type User = {
-    name?: string;
-    email?: string;
-    username?: string;
-};
-
-type DependencyResponse = {
-    analyzedAt: string;
-    collected: {
-        metadata: {
-            name: string;
-            version: string;
-            description: string;
-            keywords: string[];
-            date: string;
-            author: User;
-            publisher: User;
-            maintainers: User[];
-            links: {
-                npm: string;
-                homepage?: string;
-                repository?: string;
-                bugs?: string;
-            };
-            license: string;
-            readme?: string;
-        };
-    };
-};
-// export const DependencyCard = ({ name }: Props) => {
-//     const packageNameQuery = useRequest(() => npm.getNpmPage(name));
-
-//     console.log(packageNameQuery);
-//     return <div>{name}</div>;
-// };

@@ -6,7 +6,6 @@ import { DependencyCard, DependencyItem } from "entities/dependency";
 import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
 import { getPackageJson } from "shared/api";
-// import { issuesTypes } from "shared/config";
 import { Split } from "shared/ui";
 
 type Props = RouteChildrenProps<{
