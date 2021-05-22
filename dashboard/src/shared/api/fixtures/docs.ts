@@ -1,6 +1,10 @@
 /* eslint-disable max-len */
 
-export const requirements = `# Requirements
+export const requirements = `---
+description: Настройка рабочего окружения, установка необходимых пакетов
+---
+
+# Requirements
 
 ## Main
 
@@ -19,7 +23,11 @@ Plugins list for better <b title="Developer Experience">DX</b>
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - Autofix on save, testing from linters
 `;
 
-export const devguide = `## Usage
+export const devguide = `---
+title: DevGuide
+---
+
+## Usage
 
 ### Launch dev-stand
 \`\`\`sh

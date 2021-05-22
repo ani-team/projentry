@@ -4,6 +4,7 @@ import { FileFilled } from "@ant-design/icons";
 import { Header } from "features";
 import * as topic from "entities/topic";
 import { NavBreadcrumb } from "entities/navigation";
+import { articleLib } from "entities/article";
 import { getFile } from "shared/api";
 import { dom } from "shared/lib";
 import { docs } from "shared/config";
@@ -66,8 +67,8 @@ const SectionPage = (props: Props) => {
                                 {/* TODO: add article detect logic */}
                                 <RowCard
                                     Icon={FileFilled as any}
-                                    subtitle={path}
-                                    title={path}
+                                    title={articleLib.getTitle(path)}
+                                    subtitle={articleLib.getSummary(path)}
                                     href={`/docs/${route.sectionSlug}/${encodeURIComponent(path)}`}
                                     active={route.articleSlug === path}
                                 />
@@ -85,7 +86,7 @@ const SectionPage = (props: Props) => {
                         className="mt-20"
                         bodyStyle={{ minHeight: 500, overflow: "hidden" }}
                     >
-                        <Markdown text={article} />
+                        <Markdown text={articleLib.cleanFromAttrs(article)} />
                     </Card>
                 )}
                 {!article && <Split.Placeholder title="Select article for continue" />}
