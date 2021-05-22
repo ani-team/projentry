@@ -1,6 +1,6 @@
 import {
     RocketOutlined,
-    BugOutlined,
+    WarningOutlined,
     ApiOutlined,
     QuestionCircleOutlined,
     FileSearchOutlined,
@@ -24,8 +24,8 @@ export const topics: Topic[] = [
     {
         title: "Health",
         description: "Issues tech debt, backlog",
-        // icon: <WarningOutlined style={{ fontSize: 20 }} />,
-        icon: <BugOutlined style={{ fontSize: 20 }} />,
+        icon: <WarningOutlined style={{ fontSize: 20 }} />,
+        // icon: <BugOutlined style={{ fontSize: 20 }} />,
     },
     {
         title: "FAQ",
