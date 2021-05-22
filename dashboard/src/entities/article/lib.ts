@@ -1,6 +1,6 @@
 import fm from "front-matter";
 
-import { string } from "shared/lib";
+// import { string } from "shared/lib";
 import { getFile } from "shared/api";
 
 // FIXME: @hardcoded

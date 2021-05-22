@@ -2,6 +2,7 @@ import { Card } from "antd";
 import { FileFilled } from "@ant-design/icons";
 
 import { Markdown, RowCard } from "shared/ui";
+// import { string } from "shared/lib";
 import { getFile } from "shared/api";
 import * as lib from "./lib";
 
@@ -41,6 +42,7 @@ export const ArticleRow = ({ pathname, active, href }: Props) => {
                     attrs.description
                 ) : (
                     <pre className="mt-20" style={{ height: 120, fontSize: 10 }}>
+                        {/* <Markdown text={string.textOverflow(lib.getBody(content))} /> */}
                         <Markdown text={lib.getBody(content)} />
                     </pre>
                 )
