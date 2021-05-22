@@ -1,4 +1,3 @@
-import type { PackageJson } from "type-fest";
 import { visibleLinesDelta } from "shared/config";
 import * as fixtures from "./fixtures";
 
@@ -46,4 +45,4 @@ export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
     return { file, issueSnippets };
 };
 
-export const getPackageJson = (): PackageJson => JSON.parse(fixtures.packageJson);
+export * as packageJson from "./package-json";

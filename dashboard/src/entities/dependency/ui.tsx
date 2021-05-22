@@ -1,4 +1,5 @@
-import { Card, Empty, Row, Skeleton } from "antd";
+import { Card, Empty, Row, Col, Typography, Skeleton } from "antd";
+import { Link } from "react-router-dom";
 
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
@@ -48,6 +49,29 @@ export const DependencyItem = ({ data }: Props) => {
         <Card title={data.name} hoverable>
             {data.version}
         </Card>
+    );
+};
+
+type GroupProps = {
+    title: string;
+    items: Dependency[];
+};
+
+export const DependencyGroup = ({ items, title }: GroupProps) => {
+    return (
+        <section>
+            <Typography.Title level={3}>{title}</Typography.Title>
+            <Row gutter={[10, 10]} className="mt-20">
+                {items.map((data) => (
+                    <Col key={data.name} span={8}>
+                        {/* FIXME: @hardcoded */}
+                        <Link to={`/tech/${encodeURIComponent(data.name)}`}>
+                            <DependencyItem data={data} />
+                        </Link>
+                    </Col>
+                ))}
+            </Row>
+        </section>
     );
 };
 

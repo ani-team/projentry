@@ -2,10 +2,10 @@ import { Typography, Layout, Row, Col } from "antd";
 import { RouteChildrenProps, Link } from "react-router-dom";
 
 import { Header } from "features";
-import { DependencyCard, DependencyItem } from "entities/dependency";
+import { DependencyCard, DependencyItem, DependencyGroup } from "entities/dependency";
 import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
-import { getPackageJson } from "shared/api";
+import { packageJson } from "shared/api";
 import { Split } from "shared/ui";
 
 type Props = RouteChildrenProps<{
@@ -23,16 +23,10 @@ const TechDepedenciesPage = (props: Props) => {
 
     dom.useProjectTitle("Issues");
 
-    const dependencyJson = getPackageJson();
-    const dependencyMap = dependencyJson.dependencies || {};
-    const dependencyList = Object.entries(dependencyMap);
+    const packageDeps = packageJson.getDependencies();
+    const packageDevDeps = packageJson.getDevDependencies();
 
-    const current = dependencyName
-        ? {
-              name: dependencyName,
-              version: dependencyMap[dependencyName],
-          }
-        : undefined;
+    const current = dependencyName ? packageJson.getDependency(dependencyName) : undefined;
 
     return (
         <Split header={<Header />}>
@@ -42,15 +36,8 @@ const TechDepedenciesPage = (props: Props) => {
                     Tech Stack
                 </Typography.Title>
                 <Layout className="mt-40">
-                    <Row gutter={[10, 10]}>
-                        {dependencyList.map(([name, version]) => (
-                            <Col key={name} span={8}>
-                                <Link to={`/tech/${encodeURIComponent(name)}`}>
-                                    <DependencyItem data={{ name, version }} />
-                                </Link>
-                            </Col>
-                        ))}
-                    </Row>
+                    <DependencyGroup title="Dependencies" items={packageDeps} />
+                    <DependencyGroup title="Dev Dependencies" items={packageDevDeps} />
                 </Layout>
             </Split.Main>
             <Split.Sider>
