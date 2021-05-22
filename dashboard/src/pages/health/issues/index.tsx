@@ -44,7 +44,7 @@ const IssuesPage = (props: Props) => {
             </Split.Main>
             <Split.Sider>
                 {issue && (
-                    <>
+                    <article>
                         <IssueCard data={issue} />
                         <IssueStat data={issue} />
                         <Divider />
@@ -61,9 +61,9 @@ const IssuesPage = (props: Props) => {
                                 </Col>
                             ))}
                         </Row>
-                    </>
+                    </article>
                 )}
-                {!issue && <Split.Placeholder />}
+                {!issue && <Split.Placeholder title="Select issue for continue" />}
             </Split.Sider>
         </Split>
     );

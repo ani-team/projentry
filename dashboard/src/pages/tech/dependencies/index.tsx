@@ -50,7 +50,7 @@ const TechDepedenciesPage = (props: Props) => {
             </Split.Main>
             <Split.Sider>
                 {current && <DependencyCard data={current} />}
-                {!current && <Split.Placeholder />}
+                {!current && <Split.Placeholder title="Select package for continue" />}
             </Split.Sider>
         </Split>
     );

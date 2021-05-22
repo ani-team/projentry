@@ -39,7 +39,7 @@ const HealthIndexPage = () => {
                 </Layout>
             </Split.Main>
             <Split.Sider>
-                <Split.Placeholder />
+                <Split.Placeholder title="Select section for continue" />
             </Split.Sider>
         </Split>
     );
