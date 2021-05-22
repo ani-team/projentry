@@ -1,5 +1,4 @@
 import * as AntdIcon from "@ant-design/icons";
-import type { ComponentType, SVGProps } from "react";
 
 import { PATHS } from "./paths";
 
@@ -68,7 +67,8 @@ export const config = {
 };
 
 export function getIssueIcon(icon: IconType) {
-    return AntdIcon[icon] as ComponentType<SVGProps<SVGSVGElement>>;
+    // FIXME: @temp
+    return AntdIcon[icon] as import("types").IconComponent;
 }
 
 export function findIssue(issueTag: string) {

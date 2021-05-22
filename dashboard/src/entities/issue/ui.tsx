@@ -1,26 +1,12 @@
 import { Card, Row, Col, Result, Badge, Statistic } from "antd";
-import cn from "classnames";
-import { Link } from "react-router-dom";
 
 import { getIssueIcon } from "shared/config";
 import type { Issue } from "shared/config";
-import styles from "./styles.module.scss";
+import { RowCard } from "shared/ui";
 
-type Props = {
+type BaseProps = {
     data: Issue;
 };
-
-// export const Row = ({ tag }: Props) => {
-//     const issue = findIssue(tag);
-
-//     if (!issue) return <Result status="warning" title={`Unknown issue: ${tag}`} />;
-
-//     const Icon = getIssueIcon(issue.icon);
-
-//     return (
-//
-//     );
-// };
 
 const SEVERITY_LABEL: Record<number, string> = {
     1: "LOW",
@@ -38,7 +24,7 @@ const SEVERITY_COLOR: Record<number, string> = {
     5: "pink",
 };
 
-export const IssueCard = ({ data }: Props) => {
+export const IssueCard = ({ data }: BaseProps) => {
     const Icon = getIssueIcon(data.icon);
     return (
         <Result
@@ -50,7 +36,7 @@ export const IssueCard = ({ data }: Props) => {
 };
 
 const MAX_SPAN = 24;
-export const IssueStat = ({ data }: Props) => {
+export const IssueStat = ({ data }: BaseProps) => {
     const stats = [
         // @hardcoded
         { title: "Occurences", value: 11, valueStyle: {} },
@@ -75,24 +61,7 @@ export const IssueStat = ({ data }: Props) => {
     );
 };
 
-export const IssueRowView = ({ data }: Props) => {
-    const Icon = getIssueIcon(data.icon);
-
-    return (
-        <Row align="middle">
-            <Col span={4}>
-                <Icon className={styles.icon} />
-            </Col>
-            <Col span={20}>
-                <h3>{data.tag}</h3>
-
-                <span>{data.description}</span>
-            </Col>
-        </Row>
-    );
-};
-
-type RowProps = Props & {
+type RowProps = BaseProps & {
     active?: boolean;
 };
 export const IssueRow = ({ data, active }: RowProps) => {
@@ -102,12 +71,14 @@ export const IssueRow = ({ data, active }: RowProps) => {
             placement="end"
             text={`Severity: ${SEVERITY_LABEL[data.severity]}`}
         >
-            {/* FIXME: @hardcoded */}
-            <Link to={`/health/issues/${data.tag}`}>
-                <Card className={cn(styles.row, active && "ant-card--active")} hoverable>
-                    <IssueRowView data={data} />
-                </Card>
-            </Link>
+            <RowCard
+                // FIXME: @hardcoded
+                href={`/health/issues/${data.tag}`}
+                Icon={getIssueIcon(data.icon)}
+                title={data.tag}
+                subtitle={data.description}
+                active={active}
+            />
         </Badge.Ribbon>
     );
 };
