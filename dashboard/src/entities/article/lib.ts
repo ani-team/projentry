@@ -20,11 +20,11 @@ export const parseAttrs = (content: string) => {
 
 export const parseTitle = (content: string) => {
     // FIXME: add other variations
-    const reg = /^# (\w+)/;
+    const reg = /^# (\w+)/m;
     const titles = reg.exec(content);
     if (!titles?.length) return;
     // FIXME: @temp specify
-    return titles[0].replace("# ", "");
+    return titles[1];
 };
 
 // FIXME: @temp
