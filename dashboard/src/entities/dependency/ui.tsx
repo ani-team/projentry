@@ -1,14 +1,16 @@
-import { Card, Empty, Row, Col, Skeleton, Typography } from "antd";
+import { Card, Empty, Row, Col, Skeleton, Typography, Descriptions } from "antd";
 import cn from "classnames";
 import Icon, { GithubOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 import type { CSSProperties } from "react";
-import { npm } from "shared/api";
+import { npmApi } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
 import { ReactComponent as IconTypescript } from "./typescript.svg";
 import { ReactComponent as IconNpm } from "./npm.svg";
+
+// FIXME: @decompose
 
 type Dependency = {
     name: string;
@@ -45,36 +47,58 @@ export const DependencyItem = ({ data, active }: Props) => {
     );
 };
 
-// FIXME: @tooComplexity
+// FIXME: @tooComplexity @decompose
+// eslint-disable-next-line max-lines-per-function
 export const DependencyCard = ({ data }: Props) => {
     // FIXME: @hardcoded
-    const query = requests.useRequest<npm.PackageResponse>(
-        () => npm.getPackage(data.name),
+    const query = requests.useRequest<npmApi.PackageResponse>(
+        () => npmApi.getPackage(data.name),
         data.name,
     );
 
-    const { metadata } = query.data?.collected || {};
+    const { metadata, npm } = query.data?.collected || {};
     const readme = metadata?.readme;
     const repoUrl = metadata?.links.repository;
 
     return (
-        <article>
-            {/* TODO: add links and other info */}
+        <Card
+            title={
+                <span>
+                    <Typography.Text>{data.name}</Typography.Text>{" "}
+                    <Typography.Text type="secondary">({data.version})</Typography.Text>
+                </span>
+            }
+            extra={query.data && <ExternalLinks {...query.data} />}
+        >
+            {/* TODO: add more details */}
+            {/* FIXME: @decompose */}
+            <Card type="inner" title="General">
+                <Skeleton loading={query.loading} active paragraph={{ rows: 4 }}>
+                    <Descriptions bordered column={1}>
+                        <Descriptions.Item label="Description">
+                            {metadata?.description}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Version">{metadata?.version}</Descriptions.Item>
+                        <Descriptions.Item label="License">{metadata?.license}</Descriptions.Item>
+                        <Descriptions.Item label="Downloads">
+                            {npm?.downloads[1].count} (last week)
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Keywords">
+                            {(metadata?.keywords || []).map((keyword) => (
+                                // TODO: filter deps by keyword
+                                <Typography.Text key={keyword} code>
+                                    {keyword}
+                                </Typography.Text>
+                            ))}
+                        </Descriptions.Item>
+                    </Descriptions>
+                </Skeleton>
+            </Card>
             <Card
-                title={
-                    <span>
-                        <Typography.Text>{data.name}</Typography.Text>
-                        <Typography.Text type="secondary">({data.version})</Typography.Text>
-                    </span>
-                }
-                extra={query.data && <ExternalLinks {...query.data} />}
+                type="inner"
+                title="README"
+                className="mt-20"
                 bodyStyle={{ minHeight: 500, overflow: "hidden" }}
-                // cover={
-                //     <img
-                //         alt="example"
-                //         src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                //     />
-                // }
             >
                 <Skeleton loading={query.loading} active paragraph={{ rows: 12 }}>
                     {readme && <GithubMarkdown text={readme} repoUrl={repoUrl} />}
@@ -85,11 +109,11 @@ export const DependencyCard = ({ data }: Props) => {
                     )}
                 </Skeleton>
             </Card>
-        </article>
+        </Card>
     );
 };
 
-export const ExternalLinks = (props: npm.PackageResponse) => {
+export const ExternalLinks = (props: npmApi.PackageResponse) => {
     const { links } = props.collected.metadata || {};
 
     const items = [

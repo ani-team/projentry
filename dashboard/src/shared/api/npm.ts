@@ -9,6 +9,12 @@ export type PackageUser = {
     username?: string;
 };
 
+export type NPMDownload = {
+    from: string;
+    to: string;
+    count: number;
+};
+
 export type PackageResponse = {
     analyzedAt: string;
     collected: {
@@ -29,6 +35,9 @@ export type PackageResponse = {
             };
             license: string;
             readme?: string;
+        };
+        npm: {
+            downloads: NPMDownload[];
         };
     };
 };
