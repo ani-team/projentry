@@ -1,4 +1,5 @@
 import { Card, Empty, Row, Col, Skeleton } from "antd";
+import cn from "classnames";
 import Icon from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -14,13 +15,15 @@ type Dependency = {
 
 type Props = {
     data: Dependency;
+    active?: boolean;
 };
 
-export const DependencyItem = ({ data }: Props) => {
+export const DependencyItem = ({ data, active }: Props) => {
     const isTypesPackage = data.name.startsWith("@types/");
 
     return (
         <Card
+            className={cn(active && "ant-card--active")}
             title={data.name}
             hoverable
             extra={
@@ -36,6 +39,7 @@ export const DependencyItem = ({ data }: Props) => {
 
 // FIXME: @tooComplexity
 export const DependencyCard = ({ data }: Props) => {
+    // FIXME: @hardcoded
     const query = requests.useRequest<npm.PackageResponse>(
         () => npm.getPackage(data.name),
         data.name,
@@ -75,16 +79,17 @@ export const DependencyCard = ({ data }: Props) => {
 // FIXME: @hardcoded @decompose
 type GroupProps = {
     items: Dependency[];
+    activeKey?: string;
 };
 
-export const DependencyGroup = ({ items }: GroupProps) => {
+export const DependencyGroup = ({ items, activeKey }: GroupProps) => {
     return (
         <Row gutter={[10, 10]} className="mt-20">
             {items.map((data) => (
                 <Col key={data.name} span={8}>
                     {/* FIXME: @hardcoded */}
                     <Link to={`/tech/${encodeURIComponent(data.name)}`}>
-                        <DependencyItem data={data} />
+                        <DependencyItem data={data} active={activeKey === data.name} />
                     </Link>
                 </Col>
             ))}

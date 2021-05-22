@@ -39,11 +39,11 @@ const TechDepedenciesPage = (props: Props) => {
                     <Tabs>
                         {/* prettier-ignore */}
                         <Tabs.TabPane tab={<span><ApiFilled/> Dependencies</span>} key="deps">
-                            <DependencyGroup items={packageDeps} />
+                            <DependencyGroup items={packageDeps} activeKey={dependencyName} />
                         </Tabs.TabPane>
                         {/* prettier-ignore */}
                         <Tabs.TabPane tab={<span><ApiOutlined /> Dev Dependencies</span>} key="devDeps">
-                            <DependencyGroup items={packageDevDeps} />
+                            <DependencyGroup items={packageDevDeps} activeKey={dependencyName} />
                         </Tabs.TabPane>
                     </Tabs>
                 </Layout>

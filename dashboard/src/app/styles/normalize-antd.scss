@@ -76,3 +76,8 @@
     // FIXME: @hardcoded
     overflow: unset;
 }
+
+// FIXME: @hardcoded
+.ant-card--active {
+    border-color: var(--color-primary);
+}

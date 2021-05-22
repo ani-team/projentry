@@ -102,8 +102,9 @@ export const IssueRow = ({ data, active }: RowProps) => {
             placement="end"
             text={`Severity: ${SEVERITY_LABEL[data.severity]}`}
         >
+            {/* FIXME: @hardcoded */}
             <Link to={`/health/issues/${data.tag}`}>
-                <Card className={cn(styles.row, { [styles.rowActive]: active })} hoverable>
+                <Card className={cn(styles.row, active && "ant-card--active")} hoverable>
                     <IssueRowView data={data} />
                 </Card>
             </Link>
