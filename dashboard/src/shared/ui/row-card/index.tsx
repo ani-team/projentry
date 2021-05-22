@@ -7,18 +7,21 @@ type BaseProps = {
     title: import("react").ReactNode;
     subtitle: import("react").ReactNode;
     Icon: import("types").IconComponent;
+    col1Style?: import("react").CSSProperties;
+    col2Style?: import("react").CSSProperties;
 };
 
-export const RowCardView = ({ Icon, subtitle, title }: BaseProps) => {
+export const RowCardView = ({ Icon, subtitle, title, col1Style, col2Style }: BaseProps) => {
     return (
         <Row align="middle">
-            <Col span={4}>
+            <Col span={4} style={col1Style}>
                 <Icon className={styles.icon} />
             </Col>
-            <Col span={20}>
+            <Col span={20} style={col2Style}>
                 <h3>{title}</h3>
 
-                <span>{subtitle}</span>
+                {/* NOTE: [type=secondary] не подходит, т.к. нам надо скрывать и md-разметку */}
+                <span className={styles.subtitle}>{subtitle}</span>
             </Col>
         </Row>
     );

@@ -1,13 +1,12 @@
 import { Typography, Layout, Row, Col } from "antd";
-import { FileFilled } from "@ant-design/icons";
 
 import { Header } from "features";
 import * as topic from "entities/topic";
 import { NavBreadcrumb } from "entities/navigation";
-import { articleLib, ArticlePreview } from "entities/article";
+import { ArticlePreview, ArticleRow } from "entities/article";
 import { dom } from "shared/lib";
 import { docs } from "shared/config";
-import { Split, RowCard } from "shared/ui";
+import { Split } from "shared/ui";
 
 type Props = import("react-router-dom").RouteChildrenProps<{
     section: string;
@@ -60,12 +59,8 @@ const SectionPage = (props: Props) => {
                     <Row gutter={[0, 20]}>
                         {data.articles.paths.map((path) => (
                             <Col key={path} span={24}>
-                                {/* TODO: add active logic */}
-                                {/* TODO: add article detect logic */}
-                                <RowCard
-                                    Icon={FileFilled as any}
-                                    title={articleLib.getTitle(path)}
-                                    subtitle={articleLib.getSummary(path)}
+                                <ArticleRow
+                                    pathname={path}
                                     href={`/docs/${route.sectionSlug}/${encodeURIComponent(path)}`}
                                     active={route.articleSlug === path}
                                 />

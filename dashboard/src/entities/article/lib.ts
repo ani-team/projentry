@@ -14,34 +14,39 @@ type MdAttrs = {
     description: string;
 };
 
-export const parseAttrs = (content: string) => {
+export const getAttrs = (content: string) => {
     return fm(content).attributes as Partial<MdAttrs>;
 };
 
+// FIXME: add other variations
+export const H1_REG = /^# (\w+)/m;
+
 export const parseTitle = (content: string) => {
-    // FIXME: add other variations
-    const reg = /^# (\w+)/m;
-    const titles = reg.exec(content);
+    const titles = H1_REG.exec(content);
     if (!titles?.length) return;
     // FIXME: @temp specify
     return titles[1];
 };
 
-// FIXME: @temp
-export const getSummary = (path: string): string => {
-    const content = getFile(path);
-    const attrs = parseAttrs(content);
-    if (attrs.description) return attrs.description;
-    return string.textOverflow(getBody(content));
+// // FIXME: @temp
+// export const getSummary = (path: string): string => {
+//     const content = getFile(path);
+//     const attrs = getAttrs(content);
+//     if (attrs.description) return attrs.description;
+//     return string.textOverflow(getBody(content));
+// };
+
+export const getContent = (content: string): string => {
+    return fm(content).body;
 };
 
-export const getBody = (content: string): string => {
-    return fm(content).body;
+export const getBody = (content: string) => {
+    return getContent(content).replace(H1_REG, "");
 };
 
 export const getTitle = (path: string): string => {
     const content = getFile(path);
-    const attrs = parseAttrs(content);
+    const attrs = getAttrs(content);
     if (attrs.title) return attrs.title;
     const title = parseTitle(content);
     if (title) return title;

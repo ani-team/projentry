@@ -1,12 +1,14 @@
 import { Card } from "antd";
-import { Markdown } from "shared/ui";
+import { FileFilled } from "@ant-design/icons";
+
+import { Markdown, RowCard } from "shared/ui";
 import { getFile } from "shared/api";
 import * as lib from "./lib";
 
-type Props = {
+type BaseProps = {
     pathname: string;
 };
-export const ArticlePreview = ({ pathname }: Props) => {
+export const ArticlePreview = ({ pathname }: BaseProps) => {
     const content = getFile(pathname);
 
     return (
@@ -16,7 +18,36 @@ export const ArticlePreview = ({ pathname }: Props) => {
             className="mt-20"
             bodyStyle={{ minHeight: 500, overflow: "hidden" }}
         >
-            <Markdown text={lib.getBody(content)} />
+            <Markdown text={lib.getContent(content)} />
         </Card>
+    );
+};
+
+type Props = BaseProps & {
+    active?: boolean;
+    href?: string;
+};
+
+export const ArticleRow = ({ pathname, active, href }: Props) => {
+    const content = getFile(pathname);
+    const attrs = lib.getAttrs(content);
+
+    return (
+        <RowCard
+            Icon={FileFilled as any}
+            title={lib.getTitle(pathname)}
+            subtitle={
+                attrs.description ? (
+                    attrs.description
+                ) : (
+                    <pre className="mt-20" style={{ height: 120, fontSize: 10 }}>
+                        <Markdown text={lib.getBody(content)} />
+                    </pre>
+                )
+            }
+            href={href}
+            active={active}
+            // col2Style={{ overflow: "hidden" }}
+        />
     );
 };
