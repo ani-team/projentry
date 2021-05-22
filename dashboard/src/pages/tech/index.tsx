@@ -8,8 +8,7 @@ const Routing = () => {
 
     return (
         <Switch>
-            <Route exact path={`${match.path}`} component={DependenciesPage} />
-            <Route exact path={`${match.path}/:dependencyName`} component={DependenciesPage} />
+            <Route exact path={`${match.path}/:dependencyName?`} component={DependenciesPage} />
             <Redirect to={`${match.path}`} />
         </Switch>
     );

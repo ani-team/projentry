@@ -10,6 +10,11 @@ import { docs } from "shared/config";
 import type { DocSection } from "shared/config";
 import { Split, RowCard } from "shared/ui";
 
+type Props = import("react-router-dom").RouteChildrenProps<{
+    section: string;
+    article?: string;
+}>;
+
 // FIXME: @temp
 const topicsMap: Record<string, topic.Topic> = {
     "get-started": topic.GET_STARTED,
@@ -23,19 +28,18 @@ const articlesMap: Record<string, DocSection> = {
     "faq": docs.faq,
 };
 
-const useSection = () => {
+const useSection = (sectionSlug: string) => {
     // FIXME: @temp move to entities/navigation
-    const location = useLocation();
-    const slug = location.pathname.split("/").pop()!;
-    const section = topicsMap[slug];
-    const articles = articlesMap[slug];
+    const section = topicsMap[sectionSlug];
+    const articles = articlesMap[sectionSlug];
     return { section, articles };
 };
 
 // FIXME: @hardcoded @temp
 // eslint-disable-next-line max-lines-per-function
-const SectionPage = () => {
-    const { section, articles } = useSection();
+const SectionPage = (props: Props) => {
+    const routeParams = props.match!.params;
+    const { section, articles } = useSection(routeParams?.section);
 
     dom.useProjectTitle(section.title);
 

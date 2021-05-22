@@ -1,6 +1,7 @@
 import { GET_STARTED, CONVENTIONS, FAQ } from "entities/topic";
 
 // FIXME: @dry
+// FIXME: use at routingSwitcher
 export const routes = [
     {
         ...GET_STARTED,
