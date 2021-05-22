@@ -31,7 +31,7 @@ type Props = BaseProps & {
 export const RowCard = ({ href, active, ...baseProps }: Props) => {
     return (
         // FIXME: @temp @hardcoded
-        <Link to={href || ""}>
+        <Link to={href || "#"}>
             <Card className={cn(active && "ant-card--active")} hoverable>
                 <RowCardView {...baseProps} />
             </Card>

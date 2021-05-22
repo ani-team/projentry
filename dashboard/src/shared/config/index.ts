@@ -6,7 +6,10 @@ const { DOCS } = PATHS;
 
 export const PROJECT_NAME = "MyProj";
 
-export const docs = {
+export type DocSection = {
+    paths: string[];
+};
+export const docs: Record<string, DocSection> = {
     getStarted: {
         paths: [DOCS.SETUP_ENV, DOCS.DEV_GUIDE],
     },

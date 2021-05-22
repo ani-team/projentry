@@ -14,3 +14,15 @@ export function slugize(term: string) {
 export function unslugize(term: string) {
     return capitalize(term).replace("-", " ");
 }
+export function toPascalCase(term: string) {
+    if (!term.includes("-")) return term;
+    return term
+        .split("-")
+        .map((s) => capitalize(s))
+        .join("");
+}
+
+export function toCamelCase(term: string) {
+    const pascalCase = toPascalCase(term);
+    return pascalCase.charAt(0).toLowerCase() + pascalCase.slice(1);
+}

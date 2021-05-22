@@ -1,14 +1,14 @@
 import { Typography, Layout, Row, Col, Divider } from "antd";
+import { FileFilled } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
 
 import { Header } from "features";
-import { File } from "entities/file";
 import * as topic from "entities/topic";
 import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
-import { getFileIssueSnippets } from "shared/api";
-import { issuesTypes, findIssue, PATHS } from "shared/config";
-import { Split } from "shared/ui";
+import { docs } from "shared/config";
+import type { DocSection } from "shared/config";
+import { Split, RowCard } from "shared/ui";
 
 // FIXME: @temp
 const topicsMap: Record<string, topic.Topic> = {
@@ -16,18 +16,27 @@ const topicsMap: Record<string, topic.Topic> = {
     "conventions": topic.CONVENTIONS,
     "faq": topic.FAQ,
 };
+// FIXME: @temp
+const articlesMap: Record<string, DocSection> = {
+    "get-started": docs.getStarted,
+    "conventions": docs.conventions,
+    "faq": docs.faq,
+};
 
 const useSection = () => {
     // FIXME: @temp move to entities/navigation
     const location = useLocation();
     const slug = location.pathname.split("/").pop()!;
-    return topicsMap[slug];
+    const section = topicsMap[slug];
+    const articles = articlesMap[slug];
+    return { section, articles };
 };
 
 // FIXME: @hardcoded @temp
 // eslint-disable-next-line max-lines-per-function
 const SectionPage = () => {
-    const section = useSection();
+    const { section, articles } = useSection();
+
     dom.useProjectTitle(section.title);
 
     return (
@@ -37,15 +46,17 @@ const SectionPage = () => {
                 <Typography.Title className="mt-40" level={2}>
                     {section.title}
                 </Typography.Title>
+                <Typography.Text type="secondary">{section.description}</Typography.Text>
                 <Layout className="mt-40">
-                    {section.description}
-                    {/* <Row gutter={[0, 20]}>
-                        {issuesTypes.map((issueType) => (
-                            <Col key={issueType.tag} span={24}>
-                                <IssueRow data={issueType} active={issueType.tag === issue?.tag} />
+                    <Row gutter={[0, 20]}>
+                        {articles.paths.map((path) => (
+                            <Col key={path} span={24}>
+                                {/* TODO: add active logic */}
+                                {/* TODO: add article detect logic */}
+                                <RowCard Icon={FileFilled as any} subtitle={path} title={path} />
                             </Col>
                         ))}
-                    </Row> */}
+                    </Row>
                 </Layout>
             </Split.Main>
             <Split.Sider>
