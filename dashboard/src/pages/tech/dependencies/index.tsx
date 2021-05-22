@@ -1,4 +1,5 @@
-import { Typography, Layout } from "antd";
+import { Typography, Layout, Tabs } from "antd";
+import { ApiFilled, ApiOutlined } from "@ant-design/icons";
 import { RouteChildrenProps } from "react-router-dom";
 
 import { Header } from "features";
@@ -16,17 +17,16 @@ type Props = RouteChildrenProps<{
  * @page Страница тех.стека - Зависимости
  */
 const TechDepedenciesPage = (props: Props) => {
+    dom.useProjectTitle("Issues");
+
     const { params } = props?.match || {};
     const dependencyName = params?.dependencyName
         ? decodeURIComponent(params?.dependencyName)
         : undefined;
-
-    dom.useProjectTitle("Issues");
+    const current = dependencyName ? packageJson.getDependency(dependencyName) : undefined;
 
     const packageDeps = packageJson.getDependencies();
     const packageDevDeps = packageJson.getDevDependencies();
-
-    const current = dependencyName ? packageJson.getDependency(dependencyName) : undefined;
 
     return (
         <Split header={<Header />}>
@@ -36,8 +36,16 @@ const TechDepedenciesPage = (props: Props) => {
                     Tech Stack
                 </Typography.Title>
                 <Layout className="mt-40">
-                    <DependencyGroup title="Dependencies" items={packageDeps} />
-                    <DependencyGroup title="Dev Dependencies" items={packageDevDeps} />
+                    <Tabs>
+                        {/* prettier-ignore */}
+                        <Tabs.TabPane tab={<span><ApiFilled/> Dependencies</span>} key="deps">
+                            <DependencyGroup items={packageDeps} />
+                        </Tabs.TabPane>
+                        {/* prettier-ignore */}
+                        <Tabs.TabPane tab={<span><ApiOutlined /> Dev Dependencies</span>} key="devDeps">
+                            <DependencyGroup items={packageDevDeps} />
+                        </Tabs.TabPane>
+                    </Tabs>
                 </Layout>
             </Split.Main>
             <Split.Sider>

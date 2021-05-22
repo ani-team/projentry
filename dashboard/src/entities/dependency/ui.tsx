@@ -1,4 +1,4 @@
-import { Card, Empty, Row, Col, Typography, Skeleton } from "antd";
+import { Card, Empty, Row, Col, Skeleton } from "antd";
 import { Link } from "react-router-dom";
 
 import { GithubMarkdown } from "shared/ui";
@@ -53,25 +53,21 @@ export const DependencyItem = ({ data }: Props) => {
 };
 
 type GroupProps = {
-    title: string;
     items: Dependency[];
 };
 
-export const DependencyGroup = ({ items, title }: GroupProps) => {
+export const DependencyGroup = ({ items }: GroupProps) => {
     return (
-        <section>
-            <Typography.Title level={3}>{title}</Typography.Title>
-            <Row gutter={[10, 10]} className="mt-20">
-                {items.map((data) => (
-                    <Col key={data.name} span={8}>
-                        {/* FIXME: @hardcoded */}
-                        <Link to={`/tech/${encodeURIComponent(data.name)}`}>
-                            <DependencyItem data={data} />
-                        </Link>
-                    </Col>
-                ))}
-            </Row>
-        </section>
+        <Row gutter={[10, 10]} className="mt-20">
+            {items.map((data) => (
+                <Col key={data.name} span={8}>
+                    {/* FIXME: @hardcoded */}
+                    <Link to={`/tech/${encodeURIComponent(data.name)}`}>
+                        <DependencyItem data={data} />
+                    </Link>
+                </Col>
+            ))}
+        </Row>
     );
 };
 
