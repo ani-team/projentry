@@ -6,7 +6,6 @@ import { npm } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
 import { ReactComponent as IconTypescript } from "./typescript.svg";
-import styles from "./styles.module.scss";
 
 type Dependency = {
     name: string;
@@ -80,7 +79,7 @@ type GroupProps = {
 
 export const DependencyGroup = ({ items }: GroupProps) => {
     return (
-        <Row gutter={[10, 10]} className={styles.group}>
+        <Row gutter={[10, 10]} className="mt-20">
             {items.map((data) => (
                 <Col key={data.name} span={8}>
                     {/* FIXME: @hardcoded */}

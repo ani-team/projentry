@@ -71,3 +71,8 @@
     background-color: var(--color-gray);
     border-color: var(--color-gray);
 }
+
+.ant-tabs {
+    // FIXME: @hardcoded
+    overflow: unset;
+}
