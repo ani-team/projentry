@@ -10,12 +10,13 @@
     "sourceMap": true,
     "moduleResolution": "Node",
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "incremental": true
   },
   "lib": ["es2016"],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "client"
   ]
 }

@@ -1,5 +1,5 @@
 import { Alias } from "../aliases-finder/types";
-import getFilePaths from "./get-filepaths";
+import getFilePaths from "../common/glob-file-search";
 import * as matchAll from "string.prototype.matchall";
 import { promises as fs, existsSync } from "fs";
 import * as path from "path";
@@ -23,7 +23,7 @@ export default async function findImportsRegexp(
   aliases: Alias[],
   basePath: string,
 ): Promise<Imports> {
-  const filepaths = await getFilePaths(patterns);
+  const filepaths = await getFilePaths(...patterns);
   const files: Imports = [];
   const mapAliased2Relative = makeMapAliased2Relative(basePath, aliases);
   for (const filepath of filepaths) {
@@ -59,6 +59,8 @@ async function resolveExt(filepath: string) {
     const fileBaseName = path.basename(filepath);
     const fileWithExt = dir.find((file) => file.startsWith(`${fileBaseName}.`));
     if (fileWithExt) return path.join(path.dirname(filepath), fileWithExt);
+    const lstat = await fs.lstat(filepath);
+    if (lstat.isDirectory()) return resolveExt(path.join(filepath, "index"));
   }
   return filepath;
 }

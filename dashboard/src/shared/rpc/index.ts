@@ -1,8 +1,4 @@
-// import SocketRpc from "@projentry/client-rpc";
+import SocketRpc from "@projentry/client-rpc";
+import { Rpc } from "@projentry/server/dist/rpc/types";
 
-// type RpcObject = {
-//     testFunc: (a: number, b: number) => number;
-// };
-
-// export default SocketRpc<RpcObject>("localhost:8082");
-export default {};
+export default SocketRpc<Rpc>("localhost:8082");

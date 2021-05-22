@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@projentry/client-rpc": "file:../server/client",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -31,6 +32,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "preinstall": "cd ../server && npm install && npm run build:ui-deps",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -57,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@projentry/server": "file:../server",
     "@types/compose-function": "0.0.30",
     "@types/react-router": "^5.1.14",
     "@types/react-router-dom": "^5.1.7",
