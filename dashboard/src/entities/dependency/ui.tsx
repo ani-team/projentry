@@ -1,9 +1,12 @@
 import { Card, Empty, Row, Col, Skeleton } from "antd";
+import Icon from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 import { npm } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
+import { ReactComponent as IconTypescript } from "./typescript.svg";
+import styles from "./styles.module.scss";
 
 type Dependency = {
     name: string;
@@ -13,30 +16,22 @@ type Dependency = {
 type Props = {
     data: Dependency;
 };
+
 export const DependencyItem = ({ data }: Props) => {
+    const isTypesPackage = data.name.startsWith("@types/");
+
     return (
-        <Card title={data.name} hoverable>
+        <Card
+            title={data.name}
+            hoverable
+            extra={
+                isTypesPackage && (
+                    <Icon component={IconTypescript} style={{ color: "lightslategray" }} />
+                )
+            }
+        >
             {data.version}
         </Card>
-    );
-};
-
-type GroupProps = {
-    items: Dependency[];
-};
-
-export const DependencyGroup = ({ items }: GroupProps) => {
-    return (
-        <Row gutter={[10, 10]} className="mt-20">
-            {items.map((data) => (
-                <Col key={data.name} span={8}>
-                    {/* FIXME: @hardcoded */}
-                    <Link to={`/tech/${encodeURIComponent(data.name)}`}>
-                        <DependencyItem data={data} />
-                    </Link>
-                </Col>
-            ))}
-        </Row>
     );
 };
 
@@ -75,5 +70,25 @@ export const DependencyCard = ({ data }: Props) => {
                 </Skeleton>
             </Card>
         </article>
+    );
+};
+
+// FIXME: @hardcoded @decompose
+type GroupProps = {
+    items: Dependency[];
+};
+
+export const DependencyGroup = ({ items }: GroupProps) => {
+    return (
+        <Row gutter={[10, 10]} className={styles.group}>
+            {items.map((data) => (
+                <Col key={data.name} span={8}>
+                    {/* FIXME: @hardcoded */}
+                    <Link to={`/tech/${encodeURIComponent(data.name)}`}>
+                        <DependencyItem data={data} />
+                    </Link>
+                </Col>
+            ))}
+        </Row>
     );
 };
