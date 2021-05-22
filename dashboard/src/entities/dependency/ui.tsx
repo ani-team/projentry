@@ -3,6 +3,7 @@ import cn from "classnames";
 import Icon from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
+import type { CSSProperties } from "react";
 import { npm } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
@@ -18,18 +19,24 @@ type Props = {
     active?: boolean;
 };
 
+const ITEM_STYLE: Record<string, CSSProperties> = {
+    default: {},
+    types: { color: "rgba(119, 136, 153, 0.5)" },
+};
+
 export const DependencyItem = ({ data, active }: Props) => {
     const isTypesPackage = data.name.startsWith("@types/");
+    const variant = isTypesPackage ? "types" : "default";
 
     return (
         <Card
             className={cn(active && "ant-card--active")}
             title={data.name}
+            headStyle={ITEM_STYLE[variant]}
+            bodyStyle={ITEM_STYLE[variant]}
             hoverable
             extra={
-                isTypesPackage && (
-                    <Icon component={IconTypescript} style={{ color: "lightslategray" }} />
-                )
+                isTypesPackage && <Icon component={IconTypescript} style={ITEM_STYLE[variant]} />
             }
         >
             {data.version}
