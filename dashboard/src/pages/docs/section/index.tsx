@@ -1,14 +1,14 @@
-import { Typography, Layout, Row, Col, Card } from "antd";
+import { Typography, Layout, Row, Col } from "antd";
 import { FileFilled } from "@ant-design/icons";
 
 import { Header } from "features";
 import * as topic from "entities/topic";
 import { NavBreadcrumb } from "entities/navigation";
-import { articleLib } from "entities/article";
+import { articleLib, ArticlePreview } from "entities/article";
 import { getFile } from "shared/api";
 import { dom } from "shared/lib";
 import { docs } from "shared/config";
-import { Split, RowCard, Markdown } from "shared/ui";
+import { Split, RowCard } from "shared/ui";
 
 type Props = import("react-router-dom").RouteChildrenProps<{
     section: string;
@@ -49,8 +49,6 @@ const SectionPage = (props: Props) => {
     const { data, route } = useRouteMapping(props);
     dom.useProjectTitle(data.section.title);
 
-    const article = route.articleSlug ? getFile(route.articleSlug) : undefined;
-
     return (
         <Split header={<Header />}>
             <Split.Main>
@@ -79,17 +77,8 @@ const SectionPage = (props: Props) => {
             </Split.Main>
             <Split.Sider>
                 {/* FIXME: @decompose move to /entities/article */}
-                {article && (
-                    <Card
-                        type="inner"
-                        title={route.articleSlug}
-                        className="mt-20"
-                        bodyStyle={{ minHeight: 500, overflow: "hidden" }}
-                    >
-                        <Markdown text={articleLib.cleanFromAttrs(article)} />
-                    </Card>
-                )}
-                {!article && <Split.Placeholder title="Select article for continue" />}
+                {route.articleSlug && <ArticlePreview pathname={route.articleSlug} />}
+                {!route.articleSlug && <Split.Placeholder title="Select article for continue" />}
             </Split.Sider>
         </Split>
     );
