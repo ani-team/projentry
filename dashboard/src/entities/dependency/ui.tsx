@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, Empty, Row } from "antd";
+import { Card, Empty, Row, Skeleton } from "antd";
 
 import { GithubMarkdown } from "shared/ui";
 
@@ -12,20 +12,26 @@ type Props = {
     data: Dependency;
 };
 
-// FIXME: @hardcoded @manageAccess
-function useRequest<T = any>(resolver: () => Promise<T>, key: string) {
+// FIXME: @hardcoded @manageAccess @shareable
+// eslint-disable-next-line max-params
+function useRequest<T = any>(resolver: () => Promise<T>, key: string, debounce = 300) {
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
+        const debounceLoading = setTimeout(() => {
+            setLoading(true);
+        }, debounce);
+
         resolver()
             .then((response) => {
                 setData(response);
+                clearTimeout(debounceLoading);
                 setLoading(false);
             })
             .catch(() => {
                 setData(null);
+                clearTimeout(debounceLoading);
                 setLoading(false);
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,7 +66,6 @@ export const DependencyCard = ({ data }: Props) => {
             <Card
                 title={data.name}
                 extra={data.version}
-                loading={query.loading}
                 bodyStyle={{ minHeight: 500, overflow: "hidden" }}
                 // cover={
                 //     <img
@@ -69,12 +74,14 @@ export const DependencyCard = ({ data }: Props) => {
                 //     />
                 // }
             >
-                {readme && !query.loading && <GithubMarkdown text={readme} repoUrl={repoUrl} />}
-                {!readme && !query.loading && (
-                    <Row align="middle" justify="center" style={{ minHeight: 500 }}>
-                        <Empty description="No readme" />
-                    </Row>
-                )}
+                <Skeleton loading={query.loading} active paragraph={{ rows: 12 }}>
+                    {readme && <GithubMarkdown text={readme} repoUrl={repoUrl} />}
+                    {!readme && (
+                        <Row align="middle" justify="center" style={{ minHeight: 500 }}>
+                            <Empty description="No readme" />
+                        </Row>
+                    )}
+                </Skeleton>
             </Card>
         </article>
     );
