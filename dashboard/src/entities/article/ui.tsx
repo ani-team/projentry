@@ -16,7 +16,7 @@ export const ArticlePreview = ({ pathname }: Props) => {
             className="mt-20"
             bodyStyle={{ minHeight: 500, overflow: "hidden" }}
         >
-            <Markdown text={lib.cleanFromAttrs(content)} />
+            <Markdown text={lib.getBody(content)} />
         </Card>
     );
 };

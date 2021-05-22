@@ -1,4 +1,5 @@
-// FIXME: @lowCoupling
+import fm from "front-matter";
+
 import { string } from "shared/lib";
 import { getFile } from "shared/api";
 
@@ -13,16 +14,8 @@ type MdAttrs = {
     description: string;
 };
 
-export const parseAttrs = (content: string): Partial<MdAttrs> => {
-    if (!content.startsWith("---")) return {};
-    // FIXME: @hardcoded @temp
-    const attrsRaw = content.split("---\n")[1];
-    const attrsLines = attrsRaw.split("\n").filter(Boolean);
-    return attrsLines.reduce((attrs: any, line) => {
-        const [key, value] = line.split(": ");
-        attrs[key] = value;
-        return attrs;
-    }, {});
+export const parseAttrs = (content: string) => {
+    return fm(content).attributes as Partial<MdAttrs>;
 };
 
 export const parseTitle = (content: string) => {
@@ -39,13 +32,11 @@ export const getSummary = (path: string): string => {
     const content = getFile(path);
     const attrs = parseAttrs(content);
     if (attrs.description) return attrs.description;
-    return string.textOverflow(cleanFromAttrs(content));
+    return string.textOverflow(getBody(content));
 };
 
-export const cleanFromAttrs = (content: string): string => {
-    if (!content.startsWith("---")) return content;
-    // FIXME: @temp
-    return content.split("---")[2];
+export const getBody = (content: string): string => {
+    return fm(content).body;
 };
 
 export const getTitle = (path: string): string => {

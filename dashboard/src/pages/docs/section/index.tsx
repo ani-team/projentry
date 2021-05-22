@@ -5,7 +5,6 @@ import { Header } from "features";
 import * as topic from "entities/topic";
 import { NavBreadcrumb } from "entities/navigation";
 import { articleLib, ArticlePreview } from "entities/article";
-import { getFile } from "shared/api";
 import { dom } from "shared/lib";
 import { docs } from "shared/config";
 import { Split, RowCard } from "shared/ui";
