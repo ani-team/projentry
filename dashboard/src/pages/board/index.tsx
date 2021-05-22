@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Header } from "features";
 import { topics } from "entities/topic";
-import { string, dom } from "shared/lib";
+import { dom } from "shared/lib";
 import { PROJECT_NAME } from "shared/config";
 // import rpc from "shared/rpc";
 import styles from "./styles.module.scss";
@@ -36,7 +36,7 @@ const BoardPage = () => {
                     <Row className={styles.topics} gutter={[20, 20]}>
                         {topics.map((t) => (
                             <Col key={t.title} span={8}>
-                                <Link to={`/${string.slugize(t.title)}`} style={{ width: "100%" }}>
+                                <Link to={t.href} style={{ width: "100%" }}>
                                     {/* FIXME: @dangerAccess move to topics */}
                                     <Card title={t.title} extra={t.icon} hoverable type="inner">
                                         <p>{t.description}</p>
