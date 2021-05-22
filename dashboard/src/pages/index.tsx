@@ -7,6 +7,7 @@ const BoardPage = lazy(() => import("./board"));
 const TopicPage = lazy(() => import("./topic"));
 const HealthPages = lazy(() => import("./health"));
 const TechPages = lazy(() => import("./tech"));
+const DocsPages = lazy(() => import("./docs"));
 
 const Routing = () => {
     useResetScrollAtEveryPage();
@@ -14,13 +15,9 @@ const Routing = () => {
     return (
         <Switch>
             <Route exact path="/" component={BoardPage} />
-            {/* FIXME: temp solution! */}
-            <Route exact path="/get-started" component={TopicPage} />
             <Route path="/health" component={HealthPages} />
             <Route path="/tech" component={TechPages} />
-            <Route exact path="/faq" component={TopicPage} />
-            <Route exact path="/conventions" component={TopicPage} />
-            <Route exact path="/tech" component={TopicPage} />
+            <Route path="/docs" component={DocsPages} />
             <Route exact path="/explorer" component={TopicPage} />
             <Redirect to="/" />
         </Switch>

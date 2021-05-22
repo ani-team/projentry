@@ -1,3 +1,4 @@
+// FIXME: @temp move to entities/topic
 export const routes = [
     {
         title: "Issues",
