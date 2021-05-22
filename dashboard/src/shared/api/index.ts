@@ -1,21 +1,26 @@
-import { visibleLinesDelta } from "shared/config";
+import { visibleLinesDelta, PATHS } from "shared/config";
 import * as fixtures from "./fixtures";
-
-export const PATHS = {
-    AUTH_HOOK: "features/auth/hooks/index.tsx",
-    STYLES_1: "features/origin/styles.scss",
-    TASK_DETAILS: "pages/task-details/index.tsx",
+// FIXME: @temp
+/* eslint-disable import/namespace */
+const fixturesMap: Record<string, string> = {
+    // code
+    [PATHS.CODE.AUTH_HOOK]: fixtures.code.authSnippet,
+    [PATHS.CODE.STYLES_1]: fixtures.code.styleSnippet,
+    [PATHS.CODE.TASK_DETAILS]: fixtures.code.taskDetailsSnippet,
+    // docs
+    [PATHS.DOCS.SETUP_ENV]: fixtures.docs.requirements,
+    [PATHS.DOCS.DEV_GUIDE]: fixtures.docs.devguide,
+    [PATHS.DOCS.PAGES]: fixtures.docs.pagesConventions,
+    [PATHS.DOCS.FEATURES]: fixtures.docs.featuresConventions,
+    [PATHS.DOCS.CODE_STYLE]: fixtures.docs.codeStyle,
+    [PATHS.DOCS.STANDS]: fixtures.docs.standsDoc,
+    [PATHS.DOCS.CODEGEN]: fixtures.docs.codegenSettings,
 };
+/* eslint-enable import/namespace */
 
-const docsMap: Record<string, string> = {
-    [PATHS.AUTH_HOOK]: fixtures.authSnippet,
-    [PATHS.STYLES_1]: fixtures.styleSnippet,
-    [PATHS.TASK_DETAILS]: fixtures.taskDetailsSnippet,
-};
+export const getFiles = () => fixtures;
 
-export const getDocs = () => fixtures;
-
-export const getDoc = (pathname: string) => docsMap[pathname];
+export const getFile = (pathname: string) => fixturesMap[pathname];
 
 const computeNumberArea = (number: number, radius: number) => {
     const area = [number];
@@ -28,7 +33,7 @@ const computeNumberArea = (number: number, radius: number) => {
 };
 
 export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
-    const file = getDoc(pathname);
+    const file = getFile(pathname);
     const totalLines = file.split("\n");
     const issueLinesIdx = totalLines
         .map((line, idx) => (line.includes(`@${issueTag}`) ? idx : -1))

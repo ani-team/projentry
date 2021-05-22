@@ -6,8 +6,8 @@ import { File } from "entities/file";
 import { IssueRow, IssueCard, IssueStat } from "entities/issue";
 import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
-import { PATHS, getFileIssueSnippets } from "shared/api";
-import { issuesTypes, findIssue } from "shared/config";
+import { getFileIssueSnippets } from "shared/api";
+import { issuesTypes, findIssue, PATHS } from "shared/config";
 import { Split } from "shared/ui";
 
 type Props = RouteChildrenProps<{
@@ -49,7 +49,7 @@ const IssuesPage = (props: Props) => {
                         <IssueStat data={issue} />
                         <Divider />
                         <Row gutter={[0, 20]}>
-                            {Object.values(PATHS).map((pathname) => (
+                            {Object.values(PATHS.CODE).map((pathname) => (
                                 <Col key={pathname} span={24}>
                                     <File.Preview
                                         pathname={pathname}

@@ -1,14 +1,21 @@
 import * as AntdIcon from "@ant-design/icons";
 import type { ComponentType, SVGProps } from "react";
 
+import { PATHS } from "./paths";
+
+const { DOCS } = PATHS;
+
 export const PROJECT_NAME = "MyProj";
 
 export const docs = {
     getStarted: {
-        paths: ["/docs/get-started.md"],
+        paths: [DOCS.SETUP_ENV, DOCS.DEV_GUIDE],
     },
     conventions: {
-        paths: ["/pages/readme.md", "/features/readme.md"],
+        paths: [DOCS.PAGES, DOCS.FEATURES, DOCS.CODE_STYLE],
+    },
+    faq: {
+        paths: [DOCS.STANDS, DOCS.CODEGEN],
     },
 };
 
@@ -67,3 +74,5 @@ export function getIssueIcon(icon: IconType) {
 export function findIssue(issueTag: string) {
     return issues.types.find((type) => type.tag === issueTag);
 }
+
+export { PATHS };

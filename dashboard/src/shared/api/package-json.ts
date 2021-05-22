@@ -1,7 +1,7 @@
 import type { PackageJson } from "type-fest";
-import { packageJson } from "./fixtures";
+import { config } from "./fixtures";
 
-export const getPackageJson = (): PackageJson => JSON.parse(packageJson);
+export const getPackageJson = (): PackageJson => JSON.parse(config.packageJson);
 
 export const normalizeDependencies = (depsMap: PackageJson.Dependency) => {
     const depsList = Object.entries(depsMap || {}).map(([name, version]) => ({

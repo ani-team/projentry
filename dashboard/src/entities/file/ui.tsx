@@ -1,6 +1,6 @@
 import path from "path";
 import { Markdown } from "shared/ui";
-import { getDoc } from "shared/api";
+import { getFile } from "shared/api";
 import styles from "./styles.module.scss";
 
 type PreviewProps = {
@@ -33,6 +33,6 @@ type LazyPreviewProps = {
 
 export const LazyPreview = ({ pathname }: LazyPreviewProps) => {
     // FIXME: load later by selectors?
-    const content = getDoc(pathname);
+    const content = getFile(pathname);
     return <Preview pathname={pathname} content={content} />;
 };
