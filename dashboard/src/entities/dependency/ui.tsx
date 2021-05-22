@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Empty, Row } from "antd";
 
-import { Markdown } from "shared/ui";
+import { GithubMarkdown } from "shared/ui";
 
 type Dependency = {
     name: string;
@@ -50,7 +50,9 @@ export const DependencyCard = ({ data }: Props) => {
         data.name,
     );
 
-    const readme = query.data?.collected.metadata.readme;
+    const { metadata } = query.data?.collected || {};
+    const readme = metadata?.readme;
+    const repoUrl = metadata?.links.repository;
 
     return (
         <article>
@@ -67,7 +69,7 @@ export const DependencyCard = ({ data }: Props) => {
                 //     />
                 // }
             >
-                {readme && <Markdown text={readme} />}
+                {readme && !query.loading && <GithubMarkdown text={readme} repoUrl={repoUrl} />}
                 {!readme && !query.loading && (
                     <Row align="middle" justify="center" style={{ minHeight: 500 }}>
                         <Empty description="No readme" />
