@@ -2,9 +2,9 @@ import { Card } from "antd";
 import { FileFilled } from "@ant-design/icons";
 
 import { Markdown, RowCard } from "shared/ui";
-// import { string } from "shared/lib";
 import { getFile } from "shared/api";
 import * as lib from "./lib";
+import styles from "./styles.module.scss";
 
 type BaseProps = {
     pathname: string;
@@ -41,15 +41,13 @@ export const ArticleRow = ({ pathname, active, href }: Props) => {
                 attrs.description ? (
                     attrs.description
                 ) : (
-                    <pre className="mt-20" style={{ height: 120, fontSize: 10 }}>
-                        {/* <Markdown text={string.textOverflow(lib.getBody(content))} /> */}
+                    <pre className={styles.extPreview}>
                         <Markdown text={lib.getBody(content)} />
                     </pre>
                 )
             }
             href={href}
             active={active}
-            // col2Style={{ overflow: "hidden" }}
         />
     );
 };
