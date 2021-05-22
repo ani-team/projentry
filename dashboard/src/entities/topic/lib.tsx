@@ -18,12 +18,12 @@ export type Topic = {
 export const topics: Topic[] = [
     {
         title: "Get Started",
-        description: "Onboaridng, setup env, ...",
+        description: "Onboarding, setup env, quick-start",
         icon: <RocketOutlined style={{ fontSize: 20 }} />,
     },
     {
         title: "Health",
-        description: "Issues, backlog, tech debt ...",
+        description: "Issues tech debt, backlog",
         // icon: <WarningOutlined style={{ fontSize: 20 }} />,
         icon: <BugOutlined style={{ fontSize: 20 }} />,
     },
