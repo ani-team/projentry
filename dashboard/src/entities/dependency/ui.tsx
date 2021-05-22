@@ -1,6 +1,7 @@
 import { Card, Empty, Row, Col, Skeleton } from "antd";
 import { Link } from "react-router-dom";
 
+import { npm } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
 
@@ -12,38 +13,6 @@ type Dependency = {
 type Props = {
     data: Dependency;
 };
-
-type User = {
-    name?: string;
-    email?: string;
-    username?: string;
-};
-
-// FIXME: @hardcoded
-type DependencyResponse = {
-    analyzedAt: string;
-    collected: {
-        metadata: {
-            name: string;
-            version: string;
-            description: string;
-            keywords: string[];
-            date: string;
-            author: User;
-            publisher: User;
-            maintainers: User[];
-            links: {
-                npm: string;
-                homepage?: string;
-                repository?: string;
-                bugs?: string;
-            };
-            license: string;
-            readme?: string;
-        };
-    };
-};
-
 export const DependencyItem = ({ data }: Props) => {
     return (
         <Card title={data.name} hoverable>
@@ -73,9 +42,8 @@ export const DependencyGroup = ({ items }: GroupProps) => {
 
 // FIXME: @tooComplexity
 export const DependencyCard = ({ data }: Props) => {
-    const dependencyURI = encodeURIComponent(data.name);
-    const query = requests.useRequest<DependencyResponse>(
-        () => fetch(`https://api.npms.io/v2/package/${dependencyURI}`).then((r) => r.json()),
+    const query = requests.useRequest<npm.PackageResponse>(
+        () => npm.getPackage(data.name),
         data.name,
     );
 

@@ -46,3 +46,4 @@ export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
 };
 
 export * as packageJson from "./package-json";
+export * as npm from "./npm";
