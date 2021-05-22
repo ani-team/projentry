@@ -22,10 +22,9 @@ export const topics: Topic[] = [
         icon: <RocketOutlined style={{ fontSize: 20 }} />,
     },
     {
-        title: "Health",
-        description: "Issues tech debt, backlog",
-        icon: <WarningOutlined style={{ fontSize: 20 }} />,
-        // icon: <BugOutlined style={{ fontSize: 20 }} />,
+        title: "Conventions",
+        description: "Code, structure, architecture",
+        icon: <ApiOutlined style={{ fontSize: 20 }} />,
     },
     {
         title: "FAQ",
@@ -33,9 +32,10 @@ export const topics: Topic[] = [
         icon: <QuestionCircleOutlined style={{ fontSize: 20 }} />,
     },
     {
-        title: "Conventions",
-        description: "Code, structure, architecture",
-        icon: <ApiOutlined style={{ fontSize: 20 }} />,
+        title: "Health",
+        description: "Issues tech debt, backlog",
+        icon: <WarningOutlined style={{ fontSize: 20 }} />,
+        // icon: <BugOutlined style={{ fontSize: 20 }} />,
     },
     {
         title: "Tech",
