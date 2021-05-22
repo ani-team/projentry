@@ -1,8 +1,8 @@
-import { Typography, Layout, Row, Col } from "antd";
-import { RouteChildrenProps, Link } from "react-router-dom";
+import { Typography, Layout } from "antd";
+import { RouteChildrenProps } from "react-router-dom";
 
 import { Header } from "features";
-import { DependencyCard, DependencyItem, DependencyGroup } from "entities/dependency";
+import { DependencyCard, DependencyGroup } from "entities/dependency";
 import { NavBreadcrumb } from "entities/navigation";
 import { dom } from "shared/lib";
 import { packageJson } from "shared/api";

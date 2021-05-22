@@ -10,10 +10,16 @@
 }
 
 .main {
+    // FIXME: @hardcoded
+    height: calc(100vh - 64px);
     padding: 40px;
+    overflow: overlay;
 }
 
 .sider {
+    // FIXME: @hardcoded
+    height: calc(100vh - 64px);
     padding: 40px;
+    overflow: overlay;
     background-color: var(--color-accent);
 }
