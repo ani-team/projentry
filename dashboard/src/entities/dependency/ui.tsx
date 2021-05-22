@@ -1,6 +1,6 @@
-import { Card, Empty, Row, Col, Skeleton } from "antd";
+import { Card, Empty, Row, Col, Skeleton, Typography } from "antd";
 import cn from "classnames";
-import Icon from "@ant-design/icons";
+import Icon, { GithubOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 import type { CSSProperties } from "react";
@@ -8,6 +8,7 @@ import { npm } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
 import { ReactComponent as IconTypescript } from "./typescript.svg";
+import { ReactComponent as IconNpm } from "./npm.svg";
 
 type Dependency = {
     name: string;
@@ -60,8 +61,13 @@ export const DependencyCard = ({ data }: Props) => {
         <article>
             {/* TODO: add links and other info */}
             <Card
-                title={data.name}
-                extra={data.version}
+                title={
+                    <span>
+                        <Typography.Text>{data.name}</Typography.Text>
+                        <Typography.Text type="secondary">({data.version})</Typography.Text>
+                    </span>
+                }
+                extra={query.data && <ExternalLinks {...query.data} />}
                 bodyStyle={{ minHeight: 500, overflow: "hidden" }}
                 // cover={
                 //     <img
@@ -80,6 +86,31 @@ export const DependencyCard = ({ data }: Props) => {
                 </Skeleton>
             </Card>
         </article>
+    );
+};
+
+export const ExternalLinks = (props: npm.PackageResponse) => {
+    const { links } = props.collected.metadata || {};
+
+    const items = [
+        { href: links.repository, icon: <GithubOutlined style={{ fontSize: 28 }} /> },
+        { href: links.npm, icon: <Icon component={IconNpm} style={{ fontSize: 40 }} /> },
+    ];
+
+    return (
+        <Row align="middle" gutter={[20, 20]}>
+            {items.map(({ icon, href }) => (
+                <Typography.Link
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    disabled={!href}
+                    style={{ marginLeft: 10 }}
+                >
+                    {icon}
+                </Typography.Link>
+            ))}
+        </Row>
     );
 };
 
