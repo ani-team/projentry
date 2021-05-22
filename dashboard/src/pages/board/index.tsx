@@ -37,7 +37,8 @@ const BoardPage = () => {
                         {topics.map((t) => (
                             <Col key={t.title} span={8}>
                                 <Link to={`/${string.slugize(t.title)}`} style={{ width: "100%" }}>
-                                    <Card title={t.title} extra={t.icon} hoverable>
+                                    {/* FIXME: @dangerAccess move to topics */}
+                                    <Card title={t.title} extra={t.icon} hoverable type="inner">
                                         <p>{t.description}</p>
                                     </Card>
                                 </Link>
