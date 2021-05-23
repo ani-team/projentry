@@ -10,6 +10,7 @@ type RpcTarget = {
   [PROP]: string[];
   [CACHE]: Map<string, any & RpcTarget>;
 };
+type RpcCallee = Function & RpcTarget;
 type ProxiedRpc = any & RpcTarget;
 
 export default function <T>(
@@ -23,8 +24,9 @@ export default function <T>(
     [PROP]: [],
     [CACHE]: new Map(),
   };
+  const target2: RpcCallee = Object.assign(() => {}, target)
 
-  const proxyHandler: ProxyHandler<RpcTarget> = {
+  const proxyHandler: ProxyHandler<RpcCallee> = {
     get: function (target, prop) {
       if (typeof prop === "symbol" || prop.startsWith("$")) return target[prop];
       const propString = [...target[PROP], prop].join(".");
@@ -53,11 +55,11 @@ export default function <T>(
     },
   };
 
-  function createRpcProxy(target: RpcTarget, prop: string[]): ProxiedRpc {
+  function createRpcProxy(target: RpcCallee, prop: string[]): ProxiedRpc {
     return new Proxy(
-      { ...target, [PROP]: prop },
+      Object.assign(() => {}, target, { [PROP]: prop }),
       proxyHandler,
     ) as ProxiedRpc;
   }
-  return createRpcProxy(target, []) as T;
+  return createRpcProxy(target2, []) as T;
 }

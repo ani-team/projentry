@@ -13,18 +13,18 @@ export const RpcListener = (socket: Socket) => {
     const func = propNames.reduce((callee, prop) => callee?.[prop], exported);
 
     if (!func) {
-      callback([
+      callback(
         undefined,
         new Error(`Cannot find function rpc.${propNames.join(".")}`),
-      ]);
+      );
       return;
     }
 
     const result = func(...args);
     if (result instanceof Promise) {
       result
-        .then((promiseResult) => callback([promiseResult]))
-        .catch((err) => callback([undefined, err]));
+        .then((promiseResult) => callback(promiseResult))
+        .catch((err) => callback(undefined, err));
       return;
     }
     callback(result);

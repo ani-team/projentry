@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/index.js\"",
+    "watch": "tsc && concurrently \"tsc -w\" \"nodemon -i test.json dist/index.js\"",
     "lint": "eslint src/**/*.{js,ts}",
     "lint:fix": "eslint --fix src/**/*.{js,ts}"
   },

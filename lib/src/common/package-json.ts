@@ -1,5 +1,5 @@
 import { existsSync, promises as fs } from "fs";
-import path from "path";
+import * as path from "path";
 
 export async function getPackageJson(
   baseDir = process.cwd(),

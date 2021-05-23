@@ -15,6 +15,9 @@
     "pack:dashboard": "npm run build:dashboard && npm run cp:dashboard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "projentry": "dist/main.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ani-team/projentry.git"
