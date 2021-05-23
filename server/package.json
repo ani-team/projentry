@@ -3,10 +3,16 @@
   "version": "0.0.1",
   "description": "Projentry local server with sockets interaction to library module",
   "main": "dist/main.js",
+  "types": "dist/rpc/types.d.ts",
   "scripts": {
+    "preinstall": "cd ../lib && npm install && npm run build",
     "dev": "nodemon src/main.ts && ts-node src/main.ts",
-    "build:server": "tsc",
+    "build:server": "tsc --build tsconfig.json",
     "build:client": "tsc --build tsconfig.client.json",
+    "build:ui-deps": "npm run build:server && npm run build:client",
+    "build:dashboard": "cd ../dashboard && npm install && npm run build",
+    "cp:dashboard": "cpr ../dashboard/build ./public -d",
+    "pack:dashboard": "npm run build:dashboard && npm run cp:dashboard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +30,7 @@
     "@types/node": "^14.14.36",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
+    "cpr": "^3.0.1",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",

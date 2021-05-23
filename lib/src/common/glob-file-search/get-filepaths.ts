@@ -7,7 +7,7 @@ const globAsync = promisify(glob);
 const _difference = require("lodash/difference");
 
 export default async function getFilePaths(
-  patterns: string[],
+  ...patterns: string[]
 ): Promise<string[]> {
   // glob patterns
   let positives = [];
