@@ -1,7 +1,7 @@
 import ReactMarkdown, { ReactMarkdownPropsBase } from "react-markdown";
 import gfm from "remark-gfm";
 import CodeRenderer from "./code-renderer";
-import { useLocalUri, GITHUB_DOMAIN } from "./use-local-uri";
+import { useLocalUri } from "./use-local-uri";
 
 type Props = ReactMarkdownPropsBase & {
     text: string;
@@ -29,12 +29,11 @@ type GithubProps = Props & {
      * Ссылка на github-репозиторий
      * @see https://github.com/{org}/{name},
      */
-    repoUrl?: string;
+    repoUri?: string;
     branch?: string;
 };
 
-export const GithubMarkdown = ({ repoUrl, branch = "master", ...mdProps }: GithubProps) => {
-    const repoUri = repoUrl?.replace(GITHUB_DOMAIN, "").slice(1);
+export const GithubMarkdown = ({ repoUri, branch = "master", ...mdProps }: GithubProps) => {
     const uriTransformers = useLocalUri({ repoUri, branch });
 
     return <Markdown {...mdProps} {...uriTransformers} />;

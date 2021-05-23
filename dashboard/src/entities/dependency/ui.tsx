@@ -7,6 +7,7 @@ import type { CSSProperties } from "react";
 import { npmApi } from "shared/api";
 import { GithubMarkdown } from "shared/ui";
 import { requests } from "shared/lib";
+import * as lib from "./lib";
 import { ReactComponent as IconTypescript } from "./typescript.svg";
 import { ReactComponent as IconNpm } from "./npm.svg";
 
@@ -59,6 +60,7 @@ export const DependencyCard = ({ data }: Props) => {
     const { metadata, npm } = query.data?.collected || {};
     const readme = metadata?.readme;
     const repoUrl = metadata?.links.repository;
+    const repoUri = repoUrl ? lib.parseRepoUri(repoUrl) : undefined;
 
     return (
         <Card
@@ -73,7 +75,12 @@ export const DependencyCard = ({ data }: Props) => {
             {/* TODO: add more details */}
             {/* FIXME: @decompose */}
             <Card type="inner" title="General">
-                <Skeleton loading={query.loading} active paragraph={{ rows: 4 }}>
+                <Skeleton loading={query.debouncedLoading} active paragraph={{ rows: 20 }}>
+                    <article className="border border--accent">
+                        {repoUri && (
+                            <img src={lib.getPreviewUrl(repoUri)} alt="repo-preview" width="100%" />
+                        )}
+                    </article>
                     <Descriptions bordered column={1}>
                         <Descriptions.Item label="Description">
                             {metadata?.description}
@@ -100,8 +107,8 @@ export const DependencyCard = ({ data }: Props) => {
                 className="mt-20"
                 bodyStyle={{ minHeight: 500, overflow: "hidden" }}
             >
-                <Skeleton loading={query.loading} active paragraph={{ rows: 12 }}>
-                    {readme && <GithubMarkdown text={readme} repoUrl={repoUrl} />}
+                <Skeleton loading={query.debouncedLoading} active paragraph={{ rows: 12 }}>
+                    {readme && <GithubMarkdown text={readme} repoUri={repoUri} />}
                     {!readme && (
                         <Row align="middle" justify="center" style={{ minHeight: 500 }}>
                             <Empty description="No readme" />

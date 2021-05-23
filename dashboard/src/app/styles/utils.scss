@@ -17,3 +17,16 @@
 .h100 {
     height: 100%;
 }
+
+.border {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.border--accent {
+    border-color: var(--color-accent);
+}
+
+.blur {
+    filter: blur(0.25rem);
+}
