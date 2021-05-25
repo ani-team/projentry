@@ -17,7 +17,7 @@ const port = 8082;
 
 function startServer() {
   server.listen(port, hostname, () => {
-    logger.info(`Projentry UI listening at http://${hostname}:${port}`);
+    logger.info(`Open Projentry UI at http://${hostname}:${port}`);
   });
 }
 

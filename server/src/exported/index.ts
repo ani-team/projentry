@@ -1,4 +1,4 @@
-import * as ProjentryLib from "@projentry/lib";
+import * as ProjentryLib from "@ani-team/projentry-lib";
 import { promises as fsNode } from "fs";
 
 const { getConfig, getPackageJson, globFileSearch, ...projentry } =
