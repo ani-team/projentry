@@ -1,5 +1,5 @@
 <!-- 🎯 Add external link for your solution (homepage, npm, ...) -->
-# [Projentry](https://www.npmjs.com/package/@ani-team/projentry)
+# [Projentry](https://www.npmjs.com/package/@ani-team/projentry) [[Demo]](https://projentry.netlify.app/)
 
 > `WIP:` For a while work in progress. Because of it - use this solution carefully
 >
