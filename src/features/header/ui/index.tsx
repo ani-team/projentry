@@ -23,7 +23,7 @@ const Header = (props: Props) => {
                 <h1 className={styles.logoTitle}>projentry</h1>
             </Link>
             <Row align="middle" className={styles.search}>
-                <AutoComplete options={[]} style={{ width: "100%" }}>
+                <AutoComplete options={[]} style={{ width: "100%" }} disabled>
                     <Input.Search size="large" placeholder="Search ..." enterButton allowClear />
                 </AutoComplete>
             </Row>
@@ -32,6 +32,7 @@ const Header = (props: Props) => {
                     className={styles.switch}
                     checkedChildren={<Icon component={IconMoon} className={styles.switchIcon} />}
                     unCheckedChildren={<Icon component={IconSun} className={styles.switchIcon} />}
+                    disabled
                 />
                 <a
                     className={styles.github}
