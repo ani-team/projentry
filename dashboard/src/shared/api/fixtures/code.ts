@@ -40,25 +40,33 @@ export const TasksFilters = () => {
 \`\`\`
 `;
 
-export const authSnippet = `...
-// FIXME: @lowCoupling
+export const authSnippet = `// FIXME: @lowCoupling
 import Origin from "features/origin";
-...
+import { useLocalStorage } from "shared/hooks";
+import { CREDENTIAL_KEY } from "./consts";
+import { UserCredential } from "./types";
 
+/**
+ * @hook Использование контекста авторизации и соответствующих методов
+ */
 export const useAuth = () => {
-    ...
-    // FIXME: @dry with XXX
+    const [viewer, setViewer] = useLocalStorage<UserCredential | null>(CREDENTIAL_KEY, null);
+    // FIXME: @dry with ...
     const isAuth = !!viewer;
 
     // FIXME: @dangerAccess
     const login = (credential: UserCredential) => {
-        ...
+        setViewer(credential);
+        window.location.href = \`/\${credential.username}\`;
     };
     // FIXME: @dangerAccess
     const logout = () => {
-        ...
+        setViewer(null);
     };
-};`;
+
+    return { isAuth, viewer, login, logout };
+};
+`;
 
 export const authSnippetMd = `
 \`\`\`tsx

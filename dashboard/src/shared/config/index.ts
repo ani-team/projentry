@@ -4,7 +4,7 @@ import { PATHS } from "./paths";
 
 const { DOCS } = PATHS;
 
-export const PROJECT_NAME = "MyProj";
+export const PROJECT_NAME = "github-client";
 
 export type DocSection = {
     paths: string[];
