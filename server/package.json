@@ -1,6 +1,6 @@
 {
   "name": "@ani-team/projentry",
-  "version": "0.0.6-0",
+  "version": "0.0.6",
   "description": "Projentry local server with sockets interaction to library module",
   "main": "dist/main.js",
   "types": "dist/rpc/types.d.ts",
