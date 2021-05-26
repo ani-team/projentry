@@ -1,20 +1,80 @@
 {
-  "name": "projentry",
-  "version": "1.0.0",
-  "description": "Assistant for your projects",
+  "name": "dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "@projentry/client-rpc": "file:../server/client",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^12.20.12",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.3",
+    "antd": "^4.15.5",
+    "classnames": "^2.3.1",
+    "compose-function": "^3.0.3",
+    "front-matter": "^4.0.2",
+    "node-sass": "^5.0.0",
+    "normalize.css": "^8.0.1",
+    "query-string": "^7.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-markdown": "^5.0.3",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-syntax-highlighter": "^15.4.3",
+    "remark-gfm": "^1.0.0",
+    "typescript": "^4.2.4",
+    "use-query-params": "^1.2.2",
+    "web-vitals": "^1.1.2"
+  },
   "scripts": {
-    "heroku-prebuild": "cd dashboard && npm install && npm run build",
-    "start": "cd dashboard && npm start"
+    "preinstall": "cd ../server && npm install && npm run build:ui-deps",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint:test": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ani-team/projentry.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ani-team/projentry/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/ani-team/projentry#readme"
+  "devDependencies": {
+    "@projentry/server": "file:../server",
+    "@types/compose-function": "0.0.30",
+    "@types/react-router": "^5.1.14",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-syntax-highlighter": "^13.5.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-unicorn": "^32.0.1",
+    "prettier": "^2.3.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-css-modules": "^2.2.0",
+    "stylelint-config-recess-order": "^2.4.0",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-scss": "^3.19.0",
+    "type-fest": "^1.1.3"
+  }
 }

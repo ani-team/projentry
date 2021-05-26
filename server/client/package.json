@@ -1,9 +1,0 @@
-{
-  "name": "@projentry/client-rpc",
-  "version": "1.0.2",
-  "main": "dist/index.js",
-  "type": "module",
-  "dependencies": {
-    "socket.io-client": "^4.1.2"
-  }
-}
