@@ -1,18 +1,19 @@
 {
   "name": "@ani-team/projentry",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Projentry local server with sockets interaction to library module",
   "main": "dist/main.js",
   "types": "dist/rpc/types.d.ts",
   "scripts": {
     "internal-preinstall": "cd ../lib && npm install && npm run build",
     "dev": "nodemon src/main.ts && ts-node src/main.ts",
+    "build": "npm run build:ui-deps && npm run pack:dashboard",
+    "build:ui-deps": "npm run build:server && npm run build:client",
     "build:server": "tsc --build tsconfig.json",
     "build:client": "tsc --build tsconfig.client.json",
-    "build:ui-deps": "npm run build:server && npm run build:client",
+    "pack:dashboard": "npm run build:dashboard && npm run cp:dashboard",
     "build:dashboard": "cd ../dashboard && npm install && npm run build",
     "cp:dashboard": "cpr ../dashboard/build ./public -d",
-    "pack:dashboard": "npm run build:dashboard && npm run cp:dashboard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
