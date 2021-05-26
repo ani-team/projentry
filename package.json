@@ -31,6 +31,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "preinstall": "npm cache clean",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
