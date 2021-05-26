@@ -1,19 +1,19 @@
 [[redirects]]
-from="/health/*"
+from="/health"
 to="/"
 status=200
 
 [[redirects]]
-from="/tech/*"
+from="/tech"
 to="/"
 status=200
 
 [[redirects]]
-from="/docs/*"
+from="/docs"
 to="/"
 status=200
 
 [[redirects]]
-from="/exporer/*"
+from="/exporer"
 to="/"
 status=200
