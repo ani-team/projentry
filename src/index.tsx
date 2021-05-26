@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
 import "normalize.css";
-import "shared/api";
+// import "shared/api";
 
 ReactDOM.render(
     <React.StrictMode>
