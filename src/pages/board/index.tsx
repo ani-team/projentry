@@ -1,4 +1,5 @@
 import { Typography, Layout, Card, Row, Col } from "antd";
+import cn from "classnames";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -35,7 +36,7 @@ const BoardPage = () => {
                 <Layout className={styles.content}>
                     <Row className={styles.topics} gutter={[20, 20]}>
                         {topics.map((t) => (
-                            <Col key={t.title} span={8} style={t.title === "Explorer" ? { opacity: 0.5, pointerEvents: "none" } : {}}>
+                            <Col key={t.title} span={8} className={cn({ [styles.disabled]: t.disabled })}>
                                 <Link to={t.href} style={{ width: "100%" }}>
                                     {/* FIXME: @dangerAccess move to topics */}
                                     <Card title={t.title} extra={t.icon} hoverable type="inner">

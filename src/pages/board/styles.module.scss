@@ -10,3 +10,8 @@
 .topics {
     padding: 0 10%;
 }
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}

@@ -14,6 +14,7 @@ export type Topic = {
     description: string;
     icon: ReactNode;
     href: string;
+    disabled: boolean;
 };
 
 export const GET_STARTED: Topic = {
@@ -21,12 +22,14 @@ export const GET_STARTED: Topic = {
     description: "Onboarding, setup env, quick-start",
     icon: <RocketOutlined style={{ fontSize: 20 }} />,
     href: "/docs/get-started",
+    disabled: false,
 };
 export const CONVENTIONS: Topic = {
     title: "Conventions",
     description: "Code, structure, architecture",
     icon: <ApiOutlined style={{ fontSize: 20 }} />,
     href: "/docs/conventions",
+    disabled: false,
 };
 
 export const FAQ: Topic = {
@@ -34,6 +37,7 @@ export const FAQ: Topic = {
     description: "Frequently Asked Questions",
     icon: <QuestionCircleOutlined style={{ fontSize: 20 }} />,
     href: "/docs/faq",
+    disabled: false,
 };
 
 export const HEALTH: Topic = {
@@ -42,6 +46,7 @@ export const HEALTH: Topic = {
     icon: <WarningOutlined style={{ fontSize: 20 }} />,
     // icon: <BugOutlined style={{ fontSize: 20 }} />,
     href: "/health",
+    disabled: false,
 };
 
 export const TECH: Topic = {
@@ -49,6 +54,7 @@ export const TECH: Topic = {
     description: "Tech stack, dependencies",
     icon: <ToolOutlined style={{ fontSize: 20 }} />,
     href: "/tech",
+    disabled: false,
 };
 
 export const EXPLORER: Topic = {
@@ -56,6 +62,7 @@ export const EXPLORER: Topic = {
     description: "Project map, inner READMEs",
     icon: <FileSearchOutlined style={{ fontSize: 20 }} />,
     href: "/explorer",
+    disabled: true,
 };
 
 // prettier-ignore
