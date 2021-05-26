@@ -35,7 +35,7 @@ const BoardPage = () => {
                 <Layout className={styles.content}>
                     <Row className={styles.topics} gutter={[20, 20]}>
                         {topics.map((t) => (
-                            <Col key={t.title} span={8}>
+                            <Col key={t.title} span={8} style={t.title === "Explorer" ? { opacity: 0.5, pointerEvents: "none" } : {}}>
                                 <Link to={t.href} style={{ width: "100%" }}>
                                     {/* FIXME: @dangerAccess move to topics */}
                                     <Card title={t.title} extra={t.icon} hoverable type="inner">
