@@ -14,7 +14,11 @@
     "pack:dashboard": "npm run build:dashboard && npm run cp:dashboard",
     "build:dashboard": "cd ../dashboard && npm install && npm run build",
     "cp:dashboard": "cpr ../dashboard/build ./public -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish:prepatch": "npm version prepatch && npm publish",
+    "publish:patch": "npm version patch && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:major": "npm version major && npm publish"
   },
   "bin": {
     "projentry": "dist/main.js"
