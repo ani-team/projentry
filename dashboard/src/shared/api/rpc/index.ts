@@ -10,4 +10,10 @@ console.log(
 );
 // eslint-disable-next-line no-console
 rpc.configs.getPackageJson().then(console.log);
+
+// // @ts-ignore
+// // rpc.configs.getConfig().then(console.log).catch(console.error).finally(console.warn)
+// // !!! FIXME
+// rpc.configs.getConfig().load("../.projentryrc.js");
+
 export default rpc;

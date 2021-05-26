@@ -52,3 +52,4 @@ export const getFileIssueSnippets = (pathname: string, issueTag: string) => {
 
 export * as packageJson from "./package-json";
 export * as npmApi from "./npm";
+export { default as rpc } from "./rpc";

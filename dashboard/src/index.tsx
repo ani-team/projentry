@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "shared/rpc";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
 import "normalize.css";
+import "shared/api";
 
 ReactDOM.render(
     <React.StrictMode>

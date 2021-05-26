@@ -1,17 +1,17 @@
 export const PATHS = {
     CODE: {
-        AUTH_HOOK: "features/auth/hooks/index.tsx",
-        STYLES_1: "features/origin/styles.scss",
-        TASK_DETAILS: "pages/task-details/index.tsx",
+        AUTH_HOOK: "../test/src/features/auth/hooks/index.tsx",
+        STYLES_1: "../test/src/features/origin/styles.scss",
+        TASK_DETAILS: "../test/src/pages/task-details/index.tsx",
     },
     DOCS: {
         // GET_STARTED: "/docs/get-started.md",
-        SETUP_ENV: "/docs/setup-env.md",
-        DEV_GUIDE: "/docs/dev-guide.md",
-        PAGES: "/pages/readme.md",
-        FEATURES: "/features/readme.md",
-        CODE_STYLE: "/docs/code-style.md",
-        STANDS: "/STANDS.md",
-        CODEGEN: "/.graphql/readme.md",
+        SETUP_ENV: "../test/docs/setup-env.md",
+        DEV_GUIDE: "../test/docs/dev-guide.md",
+        PAGES: "../test/src/pages/readme.md",
+        FEATURES: "../test/src/features/readme.md",
+        CODE_STYLE: "../test/docs/code-style.md",
+        STANDS: "../test/STANDS.md",
+        CODEGEN: "../test/.graphql/readme.md",
     },
 };
