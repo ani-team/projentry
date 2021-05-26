@@ -14,6 +14,6 @@ to="/"
 status=200
 
 [[redirects]]
-from="/exporer"
+from="/explorer"
 to="/"
 status=200
