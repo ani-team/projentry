@@ -15,6 +15,7 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fani-team%2Fprojentry&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
 <!-- [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ani-team/projentry/WORKFLOW?label=tests&style=flat-square)](https://github.com/ani-team/projentry/actions) -->
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ani-team/projentry)
+[![FeatureSliced](https://img.shields.io/badge/Powered%20by-%F0%9F%8D%B0%20Feature%20Sliced-%235c9cb5)](https://feature-sliced.design/)
 
 <!-- 🖼️ Add logo / primary image -->
 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" align="right" width=120>
